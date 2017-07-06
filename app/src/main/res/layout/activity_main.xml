@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.androidapp.MainActivity.MainActivity">
+    <include layout="@layout/titlebar"/>
+    <FrameLayout
+        android:id="@+id/fragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"></FrameLayout>
+    <RadioGroup
+        android:background="@android:color/background_dark"
+        android:id="@+id/rg_group"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_product"
+            style="@style/RadioButton"
+            android:drawableTop="@drawable/shop_selector"
+            android:text="@string/product" />
+
+        <RadioButton
+            android:id="@+id/rb_magazine"
+            style="@style/RadioButton"
+            android:drawableTop="@drawable/mgz_selector"
+            android:text="@string/magazine" />
+
+        <RadioButton
+            android:id="@+id/rb_talent"
+            style="@style/RadioButton"
+            android:drawableTop="@drawable/talent_selector"
+            android:text="@string/daren" />
+
+        <RadioButton
+            android:id="@+id/rb_share"
+            style="@style/RadioButton"
+            android:drawableTop="@drawable/share_selector"
+            android:text="@string/share" />
+
+        <RadioButton
+            android:id="@+id/rb_persion"
+            style="@style/RadioButton"
+            android:drawableTop="@drawable/persion_selector"
+            android:text="@string/persion" />
+
+    </RadioGroup>
+
+</LinearLayout>

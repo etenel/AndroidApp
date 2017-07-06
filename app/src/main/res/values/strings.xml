@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AndroidApp</string>
+    <string name="product">商品</string>
+    <string name="magazine">杂志</string>
+    <string name="daren">达人</string>
+    <string name="share">分享</string>
+    <string name="persion">个人</string>
+    <string name="shop">商店</string>
+</resources>
