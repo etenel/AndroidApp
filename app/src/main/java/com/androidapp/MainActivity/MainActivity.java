@@ -1,7 +1,6 @@
 package com.androidapp.MainActivity;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,8 +15,6 @@ import com.androidapp.MainActivity.presenter.MainPresenter;
 import com.androidapp.MainActivity.view.IMainActivity;
 import com.androidapp.R;
 
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -25,7 +22,6 @@ import butterknife.OnClick;
 public class MainActivity extends AppCompatActivity implements IMainActivity {
     @BindView(R.id.fragment)
     FrameLayout fragment;
-    private List<Fragment> fragments;
     private IMainPresenter mainPresenter;
     @BindView(R.id.left)
     TextView left;
