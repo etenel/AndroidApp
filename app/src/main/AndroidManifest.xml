@@ -20,7 +20,8 @@
         </activity>
         <activity android:name=".MainActivity.MainActivity" />
         <activity android:name=".activity.ProductMessageActivity" />
-        <activity android:name=".activity.WebViewActivity"></activity>
+        <activity android:name=".activity.WebViewActivity" />
+        <activity android:name=".activity.BrandActivity"></activity>
     </application>
 
 </manifest>

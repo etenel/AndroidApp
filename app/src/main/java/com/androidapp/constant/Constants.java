@@ -10,4 +10,6 @@ public class Constants {
     };
 public static  final String PRODUCT_MSG="product_message";
     public static final String WEBURL = "weburl";
+    public static final String BRANDDETAIL = "branddetail";
+    public static final String BRANDIMAGE = "image_brand";
 }

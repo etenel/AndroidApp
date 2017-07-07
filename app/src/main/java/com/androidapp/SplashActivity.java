@@ -29,7 +29,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void initView() {
         Glide.with(this).asGif().load(R.drawable.loading_start).into(image);
-        Observable.timer(4600, TimeUnit.MILLISECONDS).subscribe(new Observer<Long>() {
+        Observable.timer(4700, TimeUnit.MILLISECONDS).subscribe(new Observer<Long>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
 

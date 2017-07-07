@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
     FrameLayout fragment;
     private IMainPresenter mainPresenter;
     @BindView(R.id.left)
-    TextView left;
+    ImageView left;
     @BindView(R.id.mid)
     TextView mid;
     @BindView(R.id.right)
@@ -41,13 +42,14 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
     RadioButton rbPersion;
     @BindView(R.id.rg_group)
     RadioGroup rgGroup;
-private FragmentManager fragmentManager;
+    private FragmentManager fragmentManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        fragmentManager=getSupportFragmentManager();
+        fragmentManager = getSupportFragmentManager();
         mainPresenter = new MainPresenter(this, this);
         initListener();
     }
@@ -69,9 +71,10 @@ private FragmentManager fragmentManager;
 
     @Override
     public void initListener() {
-        rgGroup.setOnCheckedChangeListener((radioGroup, id) -> mainPresenter.onCheckedChanged(fragmentManager,fragment, id));
+        rgGroup.setOnCheckedChangeListener((radioGroup, id) -> mainPresenter.onCheckedChanged(fragmentManager, fragment, id));
         rgGroup.check(R.id.rb_product);
     }
+
     @Override
     public void showToast() {
 

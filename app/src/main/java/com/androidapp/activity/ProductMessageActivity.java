@@ -8,6 +8,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.alibaba.fastjson.JSON;
 import com.androidapp.R;
@@ -21,11 +23,16 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ProductMessageActivity extends AppCompatActivity {
 
     @BindView(R.id.recycle_msg)
     RecyclerView recycleMsg;
+    @BindView(R.id.left)
+    ImageView left;
+    @BindView(R.id.price_selector)
+    LinearLayout priceSelector;
     private List<HomeHouseBean.DataBean.ItemsBean> datas;
     private ProductMessageAdapter PAdapter;
     private String url;
@@ -35,6 +42,7 @@ public class ProductMessageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_message);
         ButterKnife.bind(this);
+        left.setImageResource(R.drawable.ease_back);
         initData();
     }
 
@@ -68,10 +76,12 @@ public class ProductMessageActivity extends AppCompatActivity {
                             case 0:
                                 //位于左侧的item
                                 outRect.right = 40;
+
                                 break;
                             case 1:
                                 //位于右侧的item
                                 outRect.left = 40;
+
                                 break;
                             default:
                                 break;
@@ -97,4 +107,8 @@ public class ProductMessageActivity extends AppCompatActivity {
 
     }
 
+    @OnClick(R.id.left)
+    public void onViewClicked() {
+        finish();
+    }
 }

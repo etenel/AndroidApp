@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/titlebar" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="157.0dip"
+        android:background="@drawable/brand_bg"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/brand_logo"
+            android:layout_width="57.0dip"
+            android:layout_height="57.0dip"
+            android:layout_marginTop="30.0dip" />
+
+        <TextView
+            android:id="@+id/brand_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22.5dip"
+            android:textColor="#ffffffff"
+            android:textSize="17.5sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="30.0dip">
+
+        <TextView
+            android:id="@+id/brand_story_tv"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:background="#ff424950"
+            android:gravity="center"
+            android:text="品牌故事"
+            android:textColor="#ffffffff"
+            android:textSize="12.5sp" />
+
+        <TextView
+            android:id="@+id/brand_goods_tv"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:background="#ff424950"
+            android:gravity="center"
+            android:text="品牌产品"
+            android:textColor="#ffffffff"
+            android:textSize="12.5sp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:id="@+id/brand_story_content_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20.0dip"
+            android:layout_marginRight="20.0dip"
+            android:layout_marginTop="35.0dip"
+            android:lineSpacingExtra="10.0dip"
+            android:textColor="#ffadadad"
+            android:textSize="10.0sp"
+            android:visibility="gone" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+    </FrameLayout>
+</LinearLayout>

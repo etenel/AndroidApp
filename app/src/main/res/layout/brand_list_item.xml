@@ -22,8 +22,8 @@
         android:layout_marginLeft="74.0dip"
         android:layout_marginRight="30.0dip"
         android:ellipsize="end"
-        android:singleLine="true"
-        android:text="品牌名字"
+        android:maxLines="1"
+        android:text="@string/brandname"
         android:textColor="#ffcccccc"
         android:textSize="13.0sp" />
 

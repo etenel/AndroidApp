@@ -5,13 +5,13 @@
     android:background="@android:color/background_dark"
     android:orientation="horizontal">
 
-    <TextView
+    <ImageView
         android:layout_centerVertical="true"
         android:id="@+id/left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:background="@drawable/search_icon" />
+        android:src="@drawable/search_icon" />
 
     <TextView
         android:textColor="@android:color/white"
