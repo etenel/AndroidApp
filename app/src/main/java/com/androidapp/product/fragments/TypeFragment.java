@@ -42,7 +42,7 @@ public class TypeFragment extends BaseFragment {
 
             @Override
             public void onSuccess(String response) {
-                if (response != null) {
+                if (response != null&&!response.isEmpty()) {
                     Log.e("TAG", response);
                     Classification classification = JSON.parseObject(response, Classification.class);
                     datas = classification.getData().getItems();

@@ -14,25 +14,23 @@ import com.androidapp.util.LogUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class WebViewActivity extends AppCompatActivity {
+public class WebViewActivity2 extends AppCompatActivity {
 
-    @BindView(R.id.webview)
+    @BindView(R.id.webview2)
     WebView webview;
     private String url;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_web_view);
+        setContentView(R.layout.activity_web_view2);
         ButterKnife.bind(this);
         initWeb();
     }
 
     private void initWeb() {
-        //url = NetConfig.BRAND_GOODS_DETAILS_URL+getIntent().getStringExtra(Constants.WEBURL);
-        url = "http://www.iliangcang.com/i/goods/?id=" + getIntent().getStringExtra(Constants.WEBURL);
-        LogUtils.e("TAG", url);
+        url = getIntent().getStringExtra(Constants.TOPIC);
+        LogUtils.e("TAG", url+"sss");
         WebSettings settings = webview.getSettings();
         webview.requestFocusFromTouch();
         settings.setJavaScriptEnabled(true);

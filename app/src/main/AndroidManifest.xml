@@ -21,7 +21,8 @@
         <activity android:name=".MainActivity.MainActivity" />
         <activity android:name=".activity.ProductMessageActivity" />
         <activity android:name=".activity.WebViewActivity" />
-        <activity android:name=".activity.BrandActivity"></activity>
+        <activity android:name=".activity.BrandActivity" />
+        <activity android:name=".activity.WebViewActivity2"></activity>
     </application>
 
 </manifest>
