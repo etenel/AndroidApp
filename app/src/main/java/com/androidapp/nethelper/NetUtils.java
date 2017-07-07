@@ -27,7 +27,7 @@ public class NetUtils {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        if(onHttpClientListener!=null) {
+                        if (onHttpClientListener != null) {
                             onHttpClientListener.onFailure(e.getMessage());
                         }
 
@@ -35,9 +35,12 @@ public class NetUtils {
 
                     @Override
                     public void onResponse(String response, int id) {
-                        if(onHttpClientListener!=null) {
-                            onHttpClientListener.onSuccess(response);
+                        if (response != null && !response.isEmpty()) {
+                            if (onHttpClientListener != null) {
+                                onHttpClientListener.onSuccess(response);
+                            }
                         }
+
 
                     }
                 });

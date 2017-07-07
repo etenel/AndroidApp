@@ -1,10 +1,9 @@
 package com.androidapp.nethelper;
 
 
-
 public class NetConfig {
 
-//    public final static String BASE_URL = "http://mobile.iliangcang.com/goods/shopSpecial?app_key=Android&count=10&sig=3780CB0808528F7CE99081D295EE8C0F%7C116941220826768&uid=626138098&user_token=0516ed9429352c8e1e3bd11c63ba6f54&v=1.0&page=1";
+    //"http://mobile.iliangcang.com/goods/goodsList?app_key=Android&count=10&list_id=7&sig=73760B2740FA36D5A273523FBC9295FE%7C285269230036268&v=1.0&page=1";
     public final static String BASE_URL = "http://mobile.iliangcang.com/";
     //分类总url
     public final static String CATEGORY_URL = BASE_URL + "goods/goodsCategory?app_key=Android&sig=430BD99E6C913B8B8C3ED109737ECF15%7C830952120106768&v=1.0";
@@ -78,10 +77,19 @@ public class NetConfig {
     public final static String TOPIC_URL = BASE_URL +
             "goods/shopSpecial?app_key=Android&count=10&sig=3780CB0808528F7CE99081D295EE8C0F%7C116941220826768&uid=626138098&user_token=0516ed9429352c8e1e3bd11c63ba6f54&v=1.0&page=1";
 
-    //礼物header详情 url
-    public final static String gift_url = BASE_URL +
-            "goods/goodsList?app_key=Android&count=10&list_id=7&sig=73760B2740FA36D5A273523FBC9295FE%7C285269230036268&v=1.0&page=1";
+    public static int getGiftorder() {
+        return giftorder;
+    }
 
+    public static void setGiftorder(int giftorder) {
+        NetConfig.giftorder = giftorder;
+    }
+
+    private static int giftorder = 7;
+    //礼物header详情 url
+    public static String gift_url = BASE_URL +
+            "goods/goodsList?app_key=Android&count=10&list_id=";
+    public static String gift_url2 = "&sig=73760B2740FA36D5A273523FBC9295FE%7C285269230036268&v=1.0&page=1";
     //    杂志 作者列表接口
     public final static String MAGAZINE_LIST_URL = BASE_URL +
             "topic/magazineAuthorList?app_key=Android&sig=2FA0974FFF1BC3DFA562AA63C8B5A84F%7C118265010131868&v=1.0";
