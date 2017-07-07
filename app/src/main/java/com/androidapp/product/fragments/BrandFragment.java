@@ -8,6 +8,8 @@ import com.androidapp.base.BaseFragment;
  */
 
 public class BrandFragment extends BaseFragment {
+
+
     @Override
     public void initData() {
 
@@ -17,4 +19,5 @@ public class BrandFragment extends BaseFragment {
     public int getlayoutid() {
         return R.layout.item_brand;
     }
+
 }

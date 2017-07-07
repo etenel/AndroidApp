@@ -1,5 +1,6 @@
 package com.androidapp.product;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -15,7 +16,7 @@ import com.androidapp.product.fragments.GiftFragment;
 import com.androidapp.product.fragments.HomeFragment;
 import com.androidapp.product.fragments.TopicFragment;
 import com.androidapp.product.fragments.TypeFragment;
-import com.androidapp.product.model.Constants;
+import com.androidapp.constant.Constants;
 import com.androidapp.product.model.adapter.ViewPagerAdapter;
 
 import java.util.ArrayList;
@@ -53,7 +54,10 @@ public class ProductFragment extends Fragment {
         pagerAdapter = new ViewPagerAdapter(getFragmentManager(), frameLayouts, tags);
         viewPager.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
-//        viewPager.setCurrentItem(2);
+        tabLayout.setTabTextColors(Color.LTGRAY, Color.WHITE);
+        tabLayout.setBackgroundColor(Color.parseColor("#1C1C1C"));
+        viewPager.setCurrentItem(2);
+
     }
 
 

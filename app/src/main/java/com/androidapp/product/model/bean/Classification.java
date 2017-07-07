@@ -1,12 +1,13 @@
 package com.androidapp.product.model.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by etenel on 2017/7/6.
  */
 
-public class Classification {
+public class Classification implements Serializable{
 
     /**分类
      * meta : {"status":0,"server_time":"2017-07-06 11:49:58","account_id":0,"cost":0.033615827560425,"errdata":null,"errmsg":""}
@@ -42,7 +43,7 @@ public class Classification {
         this.data = data;
     }
 
-    public static class MetaBean {
+    public static class MetaBean implements Serializable{
         /**
          * status : 0
          * server_time : 2017-07-06 11:49:58
@@ -108,7 +109,7 @@ public class Classification {
         }
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * has_more : false
          * num_items : 1
@@ -143,7 +144,7 @@ public class Classification {
             this.items = items;
         }
 
-        public static class ItemsBean {
+        public static class ItemsBean implements Serializable{
             /**
              * cat_id : 45
              * cat_name : 家居
@@ -208,7 +209,7 @@ public class Classification {
                 this.second = second;
             }
 
-            public static class SecondBean {
+            public static class SecondBean implements Serializable{
                 /**
                  * cat_id : 46
                  * cat_name : 装饰摆件
