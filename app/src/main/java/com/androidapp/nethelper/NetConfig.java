@@ -3,7 +3,7 @@ package com.androidapp.nethelper;
 
 public class NetConfig {
 
-    //"http://mobile.iliangcang.com/goods/goodsList?app_key=Android&count=10&list_id=7&sig=73760B2740FA36D5A273523FBC9295FE%7C285269230036268&v=1.0&page=1";
+    //"http://mobile.iliangcang.com/topic/magazineAuthorList?app_key=Android&sig=2FA0974FFF1BC3DFA562AA63C8B5A84F%7C118265010131868&v=1.0";
     public static String BASE_URL = "http://mobile.iliangcang.com/";
     //分类总url
     public static String CATEGORY_URL = BASE_URL + "goods/goodsCategory?app_key=Android&sig=430BD99E6C913B8B8C3ED109737ECF15%7C830952120106768&v=1.0";
@@ -96,6 +96,9 @@ public class NetConfig {
     //    杂志_良仓 接口(topic_url 是详情链接)
     public static String LIANGCANG_URL = BASE_URL +
             "topic/magazineList?app_key=Android&author_id=1&sig=2FA0974FFF1BC3DFA562AA63C8B5A84F%7C118265010131868&v=1.0";
+    //
+    public static String MAGAZINE = BASE_URL + "topic/magazineList?app_key=Android&author_id=";
+    public static String MAGAZINE2 = "1&sig=2FA0974FFF1BC3DFA562AA63C8B5A84F%7C118265010131868&v=1.0";
     //    VOICER 接口
     public static String VOICER_URL = BASE_URL +
             "topic/magazineList?app_key=Android&author_id=3&sig=2FA0974FFF1BC3DFA562AA63C8B5A84F%7C118265010131868&v=1.0";

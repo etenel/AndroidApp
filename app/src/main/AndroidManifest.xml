@@ -24,6 +24,12 @@
         <activity android:name=".activity.BrandActivity" />
         <activity android:name=".activity.WebViewActivity2" />
         <activity android:name=".activity.TalentDetailActivity" />
+        <activity
+            android:name=".activity.Maganizetype"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.MaginazeActivity"
+            android:launchMode="singleTask"></activity>
     </application>
 
 </manifest>

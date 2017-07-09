@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bar"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@android:color/background_dark"
+    android:orientation="horizontal">
+
+    <TextView
+        android:textSize="8dp"
+        android:id="@+id/left"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:scaleType="fitXY"
+        android:textColor="@android:color/holo_blue_light" />
+
+    <TextView
+        android:id="@+id/mid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:drawableRight="@drawable/abc_spinner"
+        android:gravity="center"
+        android:text="@string/magazine"
+        android:textColor="@android:color/white"
+        android:textSize="16sp" />
+
+
+</RelativeLayout>

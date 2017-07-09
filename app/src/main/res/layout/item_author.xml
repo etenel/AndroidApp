@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="76.5dip"
+    android:paddingBottom="11.5dip"
+    android:paddingTop="11.5dip">
+
+    <ImageView
+        android:id="@+id/talent_author_iv"
+        android:layout_width="53.5dip"
+        android:layout_height="53.5dip"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="8dp"
+        android:scaleType="fitXY" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10.5dip"
+        android:layout_toRightOf="@id/talent_author_iv"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/topic_author_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="33.5dip"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Voicer"
+            android:textColor="@android:color/black"
+            android:textSize="12.5sp" />
+
+        <TextView
+            android:id="@+id/topic_author_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="33.5dip"
+            android:layout_marginTop="4.5dip"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Voicer"
+            android:textColor="#ff999999"
+            android:textSize="9.5sp" />
+    </LinearLayout>
+</RelativeLayout>

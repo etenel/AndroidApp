@@ -1,5 +1,6 @@
 package com.androidapp.product.fragments;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -14,6 +15,7 @@ import com.androidapp.product.model.bean.HomeBean;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by etenel on 2017/7/6.
@@ -22,6 +24,9 @@ import butterknife.BindView;
 public class HomeFragment extends BaseFragment {
     @BindView(R.id.recycle)
     RecyclerView recycle;
+    @BindView(R.id.fl_ab)
+    FloatingActionButton flAb;
+
     private HomeAdapter adapter;
     private List<HomeBean.DataBean.ItemsBean.ListBean> datas;
 
@@ -51,5 +56,8 @@ public class HomeFragment extends BaseFragment {
         return R.layout.item_home;
     }
 
-
+    @OnClick(R.id.fl_ab)
+    public void onViewClicked() {
+        recycle.scrollToPosition(0);
+    }
 }
