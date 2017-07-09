@@ -18,11 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity.MainActivity" />
+        <activity android:name=".mainactivity.MainActivity" />
         <activity android:name=".activity.ProductMessageActivity" />
         <activity android:name=".activity.WebViewActivity" />
         <activity android:name=".activity.BrandActivity" />
-        <activity android:name=".activity.WebViewActivity2"></activity>
+        <activity android:name=".activity.WebViewActivity2" />
+        <activity android:name=".activity.TalentDetailActivity" />
     </application>
 
 </manifest>

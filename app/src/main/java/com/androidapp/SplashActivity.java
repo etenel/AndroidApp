@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import com.androidapp.MainActivity.MainActivity;
+import com.androidapp.mainactivity.MainActivity;
 import com.bumptech.glide.Glide;
 
 import java.util.concurrent.TimeUnit;

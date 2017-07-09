@@ -1,4 +1,4 @@
-package com.androidapp.MainActivity.view;
+package com.androidapp.mainactivity.view;
 
 /**
  * Created by etenel on 2017/7/6.

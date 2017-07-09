@@ -1,4 +1,4 @@
-package com.androidapp.MainActivity.presenter;
+package com.androidapp.mainactivity.presenter;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;

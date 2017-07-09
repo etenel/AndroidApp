@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_pup"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:orientation="vertical"
+    android:visibility="gone">
+
+    <RadioGroup
+        android:id="@+id/rg_groups"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RadioButton
+            android:id="@+id/rb_moren"
+            style="@style/popuwindow"
+            android:text="@string/defaultrecommend" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#99000000" />
+
+        <RadioButton
+            android:id="@+id/rb_zuiduo"
+            style="@style/popuwindow"
+            android:text="@string/mostrecommend" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#80000000" />
+
+        <RadioButton
+            android:id="@+id/rb_like"
+            style="@style/popuwindow"
+            android:text="@string/bestlike" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#80000000" />
+
+        <RadioButton
+            android:id="@+id/rb_new"
+            style="@style/popuwindow"
+            android:text="@string/newrecommend" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#80000000" />
+
+        <RadioButton
+            android:id="@+id/rb_newjoin"
+            style="@style/popuwindow"
+            android:text="@string/newjoiner" />
+    </RadioGroup>
+
+
+</LinearLayout>

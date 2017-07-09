@@ -1,4 +1,4 @@
-package com.androidapp.MainActivity.model;
+package com.androidapp.mainactivity.model;
 
 import android.support.v4.app.Fragment;
 

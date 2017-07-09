@@ -64,33 +64,7 @@ public class ProductMessageActivity extends AppCompatActivity {
                 gridLayoutManager = new GridLayoutManager(ProductMessageActivity.this, 2, GridLayoutManager.VERTICAL, false);
                 //gridLayoutManager.setMeasuredDimension(10, 10);
                 recycleMsg.setLayoutManager(gridLayoutManager);
-                recycleMsg.addItemDecoration(new RecyclerView.ItemDecoration() {
 
-                    @Override
-                    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-                        super.getItemOffsets(outRect, view, parent, state);
-                        //获得当前item的位置
-                        int position = parent.getChildAdapterPosition(view);
-                        //根据position确定item需要留出的位置
-                        switch (position % 2) {
-                            case 0:
-                                //位于左侧的item
-                                outRect.right = 40;
-
-                                break;
-                            case 1:
-                                //位于右侧的item
-                                outRect.left = 40;
-
-                                break;
-                            default:
-                                break;
-                        }
-                        //设置底部边距
-                        outRect.bottom = 20;
-                        outRect.top = 20;
-                    }
-                });
                 PAdapter.setOnItemClickListener((adapter, view, position) -> {
                     Intent intent = new Intent(ProductMessageActivity.this, WebViewActivity.class);
                     intent.putExtra(Constants.WEBURL, datas.get(position).getGoods_id());
@@ -103,7 +77,33 @@ public class ProductMessageActivity extends AppCompatActivity {
 
             }
         });
+        recycleMsg.addItemDecoration(new RecyclerView.ItemDecoration() {
 
+            @Override
+            public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+                super.getItemOffsets(outRect, view, parent, state);
+                //获得当前item的位置
+                int position = parent.getChildAdapterPosition(view);
+                //根据position确定item需要留出的位置
+                switch (position % 2) {
+                    case 0:
+                        //位于左侧的item
+                        outRect.right = 40;
+
+                        break;
+                    case 1:
+                        //位于右侧的item
+                        outRect.left = 40;
+
+                        break;
+                    default:
+                        break;
+                }
+                //设置底部边距
+                outRect.bottom = 20;
+                outRect.top = 20;
+            }
+        });
 
     }
 

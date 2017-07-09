@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1E2125"
+    android:orientation="vertical"
+    tools:context="com.androidapp.activity.TalentDetailActivity">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/talent_detail_bar" />
+
+        <include layout="@layout/item_talent_author" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:orientation="vertical">
+
+            <RadioGroup
+                android:id="@+id/rgp"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@android:color/darker_gray"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/ll_like"
+                    style="@style/RadioButton2"
+                    android:text="喜欢\n%1$s"></RadioButton>
+
+                <RadioButton
+                    android:id="@+id/ll_recommend"
+                    style="@style/RadioButton2"
+                    android:text="推荐\n%1$s"></RadioButton>
+
+                <RadioButton
+                    android:id="@+id/ll_attention"
+                    style="@style/RadioButton2"
+                    android:text="关注\n%1$s" />
+
+
+                <RadioButton
+                    style="@style/RadioButton2"
+                    android:id="@+id/ll_fans"
+                    android:text="粉丝\n%1$s" />
+
+            </RadioGroup>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"></android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</ScrollView>

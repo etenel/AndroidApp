@@ -7,12 +7,12 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:scaleType="fitXY"
         android:id="@+id/left"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
+        android:scaleType="fitXY"
         android:src="@drawable/search_icon" />
 
     <TextView
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="@string/shop"
+        android:text="@string/daren"
         android:textColor="@android:color/white"
         android:textSize="16sp" />
 
@@ -33,5 +33,5 @@
         android:layout_marginRight="15dp"
         android:background="@null"
         android:scaleType="fitXY"
-        android:src="@drawable/actionbar_navigation_cart" />
+        android:src="@drawable/actionbar_navigation_menu" />
 </RelativeLayout>

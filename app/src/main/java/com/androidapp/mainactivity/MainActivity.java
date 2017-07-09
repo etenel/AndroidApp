@@ -1,35 +1,24 @@
-package com.androidapp.MainActivity;
+package com.androidapp.mainactivity;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
-import com.androidapp.MainActivity.presenter.IMainPresenter;
-import com.androidapp.MainActivity.presenter.MainPresenter;
-import com.androidapp.MainActivity.view.IMainActivity;
 import com.androidapp.R;
+import com.androidapp.mainactivity.presenter.IMainPresenter;
+import com.androidapp.mainactivity.presenter.MainPresenter;
+import com.androidapp.mainactivity.view.IMainActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements IMainActivity {
     @BindView(R.id.fragment)
     FrameLayout fragment;
     private IMainPresenter mainPresenter;
-    @BindView(R.id.left)
-    ImageView left;
-    @BindView(R.id.mid)
-    TextView mid;
-    @BindView(R.id.right)
-    ImageButton right;
     @BindView(R.id.rb_product)
     RadioButton rbProduct;
     @BindView(R.id.rb_magazine)
@@ -52,16 +41,6 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
         fragmentManager = getSupportFragmentManager();
         mainPresenter = new MainPresenter(this, this);
         initListener();
-    }
-
-    @OnClick({R.id.left, R.id.right})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.left:
-                break;
-            case R.id.right:
-                break;
-        }
     }
 
     @Override
