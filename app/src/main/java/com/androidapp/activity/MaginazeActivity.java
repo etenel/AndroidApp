@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
+import android.view.View;
 import android.view.Window;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -63,6 +64,7 @@ public class MaginazeActivity extends AppCompatActivity {
     private void initTitle() {
         String name = getIntent().getStringExtra(Constants.MAGAUTHORNAME);
         mid.setText("杂志-" + name);
+        left.setVisibility(View.GONE);
     }
 
     private void initData() {
@@ -72,9 +74,7 @@ public class MaginazeActivity extends AppCompatActivity {
             public void onSuccess(String response) {
                 MagnizeBean magnizeBean = JSON.parseObject(response, MagnizeBean.class);
                 List<MagnizeBean.Data.Items.ProductBean> datas = magnizeBean.getData().getItems().getDatas();
-
                 LinearLayoutManager layoutMgr = new LinearLayoutManager(MaginazeActivity.this, LinearLayoutManager.VERTICAL, false);
-
                 adapter = new MagnizeAdapter(R.layout.item_mag, datas);
                 recycle.setAdapter(adapter);
                 recycle.setLayoutManager(layoutMgr);

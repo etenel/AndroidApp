@@ -139,8 +139,10 @@ public class MagnizeBean {
 
                     List<ProductBean> o = new Gson().fromJson(response, new TypeToken<ArrayList<ProductBean>>() {
                     }.getType());
+                    for (int i1 = 0; i1 < o.size(); i1++) {
+                        datas.add(o.get(i1));
+                    }
 
-                    datas.add(o.get(0));
                 }
                 return datas;
             }

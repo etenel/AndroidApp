@@ -18,8 +18,8 @@ import com.androidapp.maganize.adapter.MagnizeAdapter;
 import com.androidapp.maganize.bean.MagnizeBean;
 import com.androidapp.nethelper.NetConfig;
 import com.androidapp.nethelper.NetUtils;
+import com.androidapp.util.DateChange;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -43,7 +43,7 @@ public class MaganizeFragment extends BaseFragment {
 
 
     private MagnizeAdapter adapter;
-
+    public List<MagnizeBean.Data.Items.ProductBean> datas;
     @Override
     public int getlayoutid() {
         return R.layout.fragment_maganize;
@@ -61,10 +61,10 @@ public class MaganizeFragment extends BaseFragment {
             @Override
             public void onSuccess(String response) {
                 MagnizeBean magnizeBean = JSON.parseObject(response, MagnizeBean.class);
-                List<MagnizeBean.Data.Items.ProductBean> datas = magnizeBean.getData().getItems().getDatas();
-                ArrayList keys = magnizeBean.getData().getItems().getKeys();
-                LinearLayoutManager layoutMgr = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+                datas = magnizeBean.getData().getItems().getDatas();
 
+
+                LinearLayoutManager layoutMgr = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
                 adapter = new MagnizeAdapter(R.layout.item_mag, datas);
                 recycle.setAdapter(adapter);
                 recycle.setLayoutManager(layoutMgr);
@@ -80,6 +80,30 @@ public class MaganizeFragment extends BaseFragment {
 
             }
         });
+    }
+
+    @Override
+    public void initListener() {
+
+        recycle.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                gettime();
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+        });
+    }
+
+    private void gettime() {
+        LinearLayoutManager layoutManager = (LinearLayoutManager) recycle.getLayoutManager();
+        int position = layoutManager.findFirstVisibleItemPosition();
+        if (position == 0) {
+            left.setText("Today");
+        } else {
+
+            left.setText(DateChange.dateFormat(datas.get(position).getAddtime().substring(5, 7)) +
+                    datas.get(position).getAddtime().substring(7, 10));
+        }
     }
 
     @OnClick(R.id.bar)

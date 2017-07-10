@@ -40,10 +40,10 @@ public final class BarUtils {
     // status bar
     ///////////////////////////////////////////////////////////////////////////
 
-    private static final int    DEFAULT_STATUS_BAR_ALPHA = 112;
+    private static final int DEFAULT_STATUS_BAR_ALPHA = 112;
     private static final String FAKE_STATUS_BAR_VIEW_TAG = "FAKE_STATUS_BAR_VIEW_TAG";
-    private static final String FAKE_TOP_VIEW_TAG        = "FAKE_TOP_VIEW_TAG";
-    private static final int    TAG_KEY_HAVE_SET_OFFSET  = -123;
+    private static final String FAKE_TOP_VIEW_TAG = "FAKE_TOP_VIEW_TAG";
+    private static final int TAG_KEY_HAVE_SET_OFFSET = -123;
 
     private BarUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
@@ -630,7 +630,8 @@ public final class BarUtils {
             return 0;
         }
     }
-    public static void setIndicator(TabLayout tabs, int leftDip, int rightDip){
+
+    public static void setIndicator(TabLayout tabs, int leftDip, int rightDip) {
         Class<?> tabLayout = tabs.getClass();
         Field tabStrip = null;
         try {

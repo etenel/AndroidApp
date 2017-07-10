@@ -74,6 +74,7 @@ public class TalentDetailActivity extends AppCompatActivity {
     public RecommendBean recommendBean;
     public AttentionsBean attentionsBean;
     public FansBean fansBean;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -147,20 +148,17 @@ public class TalentDetailActivity extends AppCompatActivity {
                         public void onSuccess(String response) {
                             likeBean = JSON.parseObject(response, LikeBean.class);
                             int i = Integer.parseInt(likeBean.getData().getItems().getLike_count());
-                            if (i != 0) {
-                                LogUtils.e("TAG", "like=" + i);
-                                List<LikeBean.DataBean.ItemsBean.GoodsBean> goods = likeBean.getData().getItems().getGoods();
-                                likeAdapter = new TalentLikeAdapter(R.layout.item_like, goods);
-                                recycle.setAdapter(likeAdapter);
-                                recycle.setLayoutManager(new GridLayoutManager(TalentDetailActivity.this, 3, GridLayoutManager.VERTICAL, false));
-                                likeAdapter.setOnItemClickListener((adapter, view12, position) -> {
-                                    Intent intent = new Intent(TalentDetailActivity.this, WebViewActivity.class);
-                                    intent.putExtra(Constants.WEBURL, goods.get(position).getGoods_id());
-                                    startActivity(intent);
-                                });
-                            } else {
-                                return;
-                            }
+
+                            LogUtils.e("TAG", "like=" + i);
+                            List<LikeBean.DataBean.ItemsBean.GoodsBean> goods = likeBean.getData().getItems().getGoods();
+                            likeAdapter = new TalentLikeAdapter(R.layout.item_like, goods);
+                            recycle.setAdapter(likeAdapter);
+                            recycle.setLayoutManager(new GridLayoutManager(TalentDetailActivity.this, 3, GridLayoutManager.VERTICAL, false));
+                            likeAdapter.setOnItemClickListener((adapter, view12, position) -> {
+                                Intent intent = new Intent(TalentDetailActivity.this, WebViewActivity.class);
+                                intent.putExtra(Constants.WEBURL, goods.get(position).getGoods_id());
+                                startActivity(intent);
+                            });
                         }
 
                         @Override
@@ -176,20 +174,16 @@ public class TalentDetailActivity extends AppCompatActivity {
                         public void onSuccess(String response) {
                             recommendBean = JSON.parseObject(response, RecommendBean.class);
                             int i = Integer.parseInt(recommendBean.getData().getItems().getRecommendation_count());
-                            if (i != 0) {
-                                LogUtils.e("TAG", "recommend" + i);
-                                List<RecommendBean.DataBean.ItemsBean.GoodsBean> goods = recommendBean.getData().getItems().getGoods();
-                                recommendAdapter = new TalentRecommendAdapter(R.layout.item_like, goods);
-                                recycle.setAdapter(recommendAdapter);
-                                recycle.setLayoutManager(new GridLayoutManager(TalentDetailActivity.this, 3, GridLayoutManager.VERTICAL, false));
-                                recommendAdapter.setOnItemClickListener((adapter, view13, position) -> {
-                                    Intent intent = new Intent(TalentDetailActivity.this, WebViewActivity.class);
-                                    intent.putExtra(Constants.WEBURL, goods.get(position).getGoods_id());
-                                    startActivity(intent);
-                                });
-                            } else {
-                                return;
-                            }
+                            LogUtils.e("TAG", "recommend" + i);
+                            List<RecommendBean.DataBean.ItemsBean.GoodsBean> goods = recommendBean.getData().getItems().getGoods();
+                            recommendAdapter = new TalentRecommendAdapter(R.layout.item_like, goods);
+                            recycle.setAdapter(recommendAdapter);
+                            recycle.setLayoutManager(new GridLayoutManager(TalentDetailActivity.this, 3, GridLayoutManager.VERTICAL, false));
+                            recommendAdapter.setOnItemClickListener((adapter, view13, position) -> {
+                                Intent intent = new Intent(TalentDetailActivity.this, WebViewActivity.class);
+                                intent.putExtra(Constants.WEBURL, goods.get(position).getGoods_id());
+                                startActivity(intent);
+                            });
                         }
 
                         @Override
@@ -205,19 +199,16 @@ public class TalentDetailActivity extends AppCompatActivity {
                         public void onSuccess(String response) {
                             attentionsBean = JSON.parseObject(response, AttentionsBean.class);
                             int i = Integer.parseInt(attentionsBean.getData().getItems().getFollowing_count());
-                            if (i != 0) {
-                                List<AttentionsBean.DataBean.ItemsBean.UsersBean> users = attentionsBean.getData().getItems().getUsers();
-                                attentAdapter = new TalentAttentAdapter(R.layout.item_like, users);
-                                recycle.setAdapter(attentAdapter);
-                                recycle.setLayoutManager(new GridLayoutManager(TalentDetailActivity.this, 3, GridLayoutManager.VERTICAL, false));
-                                attentAdapter.setOnItemClickListener((adapter, view1, position) -> {
-                                    Intent intent = new Intent(TalentDetailActivity.this, TalentDetailActivity.class);
-                                    intent.putExtra(Constants.TALENTDETAIL, users.get(position).getUser_id());
-                                    startActivity(intent);
-                                });
-                            } else {
-                                return;
-                            }
+
+                            List<AttentionsBean.DataBean.ItemsBean.UsersBean> users = attentionsBean.getData().getItems().getUsers();
+                            attentAdapter = new TalentAttentAdapter(R.layout.item_like, users);
+                            recycle.setAdapter(attentAdapter);
+                            recycle.setLayoutManager(new GridLayoutManager(TalentDetailActivity.this, 3, GridLayoutManager.VERTICAL, false));
+                            attentAdapter.setOnItemClickListener((adapter, view1, position) -> {
+                                Intent intent = new Intent(TalentDetailActivity.this, TalentDetailActivity.class);
+                                intent.putExtra(Constants.TALENTDETAIL, users.get(position).getUser_id());
+                                startActivity(intent);
+                            });
                         }
 
                         @Override
@@ -233,19 +224,16 @@ public class TalentDetailActivity extends AppCompatActivity {
                         public void onSuccess(String response) {
                             fansBean = JSON.parseObject(response, FansBean.class);
                             int i = Integer.parseInt(fansBean.getData().getItems().getFollowed_count());
-                            if (i != 0) {
-                                List<FansBean.DataBean.ItemsBean.UsersBean> users = fansBean.getData().getItems().getUsers();
-                                fansAdapter = new TalentFansAdapter(R.layout.item_like, users);
-                                recycle.setAdapter(fansAdapter);
-                                recycle.setLayoutManager(new GridLayoutManager(TalentDetailActivity.this, 3, GridLayoutManager.VERTICAL, false));
-                                fansAdapter.setOnItemClickListener((adapter, view, position) -> {
-                                    Intent intent = new Intent(TalentDetailActivity.this, TalentDetailActivity.class);
-                                    intent.putExtra(Constants.TALENTDETAIL, users.get(position).getUser_id());
-                                    startActivity(intent);
-                                });
-                            } else {
-                                return;
-                            }
+
+                            List<FansBean.DataBean.ItemsBean.UsersBean> users = fansBean.getData().getItems().getUsers();
+                            fansAdapter = new TalentFansAdapter(R.layout.item_like, users);
+                            recycle.setAdapter(fansAdapter);
+                            recycle.setLayoutManager(new GridLayoutManager(TalentDetailActivity.this, 3, GridLayoutManager.VERTICAL, false));
+                            fansAdapter.setOnItemClickListener((adapter, view, position) -> {
+                                Intent intent = new Intent(TalentDetailActivity.this, TalentDetailActivity.class);
+                                intent.putExtra(Constants.TALENTDETAIL, users.get(position).getUser_id());
+                                startActivity(intent);
+                            });
                         }
 
                         @Override

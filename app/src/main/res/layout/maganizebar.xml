@@ -7,14 +7,16 @@
     android:orientation="horizontal">
 
     <TextView
-        android:textSize="8dp"
         android:id="@+id/left"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
+        android:gravity="center"
         android:scaleType="fitXY"
-        android:textColor="@android:color/holo_blue_light" />
+        android:text="Today"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="10dp" />
 
     <TextView
         android:id="@+id/mid"

@@ -3,7 +3,7 @@ package com.androidapp.nethelper;
 
 public class NetConfig {
 
-    //"http://mobile.iliangcang.com/topic/magazineAuthorList?app_key=Android&sig=2FA0974FFF1BC3DFA562AA63C8B5A84F%7C118265010131868&v=1.0";
+    //"http://mobile.iliangcang.com/topic/magazineList?app_key=Android&author_id=1&sig=2FA0974FFF1BC3DFA562AA63C8B5A84F%7C118265010131868&v=1.0";
     public static String BASE_URL = "http://mobile.iliangcang.com/";
     //分类总url
     public static String CATEGORY_URL = BASE_URL + "goods/goodsCategory?app_key=Android&sig=430BD99E6C913B8B8C3ED109737ECF15%7C830952120106768&v=1.0";
@@ -175,4 +175,15 @@ public class NetConfig {
     public static String EXPERT_MENU_NEWJ_URL = BASE_URL +
             "user/masterList?app_key=Android&count=18&orderby=reg_time&page=1&sig=79F01B94B8EBEFAC8EEB344EE2B20AA2%7C383889010803768&v=1.0";
 
+
+
+    //百思不得姐推荐页面
+    public static  String BAISIRECOMMEND_URL="http://s.budejie.com/topic/list/jingxuan/1/budejie-android-6.6.3/0-20.json";
+
+    //百思不得姐段子页面
+    public static String BAISISTORY_URL="http://s.budejie.com/topic/tag-topic/64/hot/budejie-android-6.6.3/0-20.json";
+    //百思不得姐详情
+//中间添加id
+    public static  String BAISIDETAIL_URL="http://c.api.budejie.com/topic/comment_list/";
+    public static String BAISIDETAILURL2="http://c.api.budejie.com/topic/comment_list/22860808/0/budejie-android-6.6.3/0-20.json";
 }
