@@ -1,13 +1,15 @@
 package com.androidapp.product.fragments;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
 import com.androidapp.R;
-import com.androidapp.activity.ProductMessageActivity;
+import com.androidapp.activity.ProductListActivity;
 import com.androidapp.base.BaseFragment;
 import com.androidapp.constant.Constants;
 import com.androidapp.nethelper.NetConfig;
@@ -54,12 +56,16 @@ public class TypeFragment extends BaseFragment {
                             new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
                     recycle.setLayoutManager(gridLayoutManager);
                     tyAdapter.setOnItemClickListener((adapter1, view, position) -> {
-                        Intent intent = new Intent(getContext(), ProductMessageActivity.class);
+                        Intent intent = new Intent(getContext(), ProductListActivity.class);
                         intent.putExtra(Constants.PRODUCT_MSG, urls[position]);
-                        startActivity(intent);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
+                        } else {
+                            startActivity(intent);
+                        }
                     });
 //                    adapter.setmOnitemClickListenr(view -> {
-//                        startActivity(new Intent(getContext(), ProductMessageActivity.class));
+//                        startActivity(new Intent(getContext(), ProductListActivity.class));
 //                    });
 //                    recycle.setLayoutManager(new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false));
                 }

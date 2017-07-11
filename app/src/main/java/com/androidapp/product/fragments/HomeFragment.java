@@ -17,7 +17,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static com.chad.library.adapter.base.BaseQuickAdapter.SLIDEIN_BOTTOM;
+import static com.chad.library.adapter.base.BaseQuickAdapter.SLIDEIN_LEFT;
 
 /**
  * Created by etenel on 2017/7/6.
@@ -42,7 +42,7 @@ public class HomeFragment extends BaseFragment {
                     HomeBean homeBean = JSON.parseObject(response, HomeBean.class);
                     datas = homeBean.getData().getItems().getList();
                     adapter = new HomeAdapter(datas);
-                    adapter.openLoadAnimation(SLIDEIN_BOTTOM);
+                    adapter.openLoadAnimation(SLIDEIN_LEFT);
                     recycle.setAdapter(adapter);
                     recycle.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
                 }

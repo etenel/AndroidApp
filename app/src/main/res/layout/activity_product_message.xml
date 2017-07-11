@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.androidapp.activity.ProductMessageActivity">
+    tools:context="com.androidapp.activity.ProductListActivity">
 
     <include layout="@layout/titlebar" />
 <LinearLayout

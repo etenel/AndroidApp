@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.androidapp.R;
-import com.androidapp.activity.ProductMessageActivity;
+import com.androidapp.activity.ProductListActivity;
 import com.androidapp.base.BaseFragment;
 import com.androidapp.constant.Constants;
 import com.androidapp.nethelper.NetConfig;
@@ -54,7 +54,7 @@ public class GiftFragment extends BaseFragment {
 
     @OnClick({R.id.present_7_iv, R.id.present_1_iv, R.id.present_2_iv, R.id.present_3_iv, R.id.present_4_iv, R.id.present_5_iv, R.id.present_6_iv, R.id.set_gift_remind})
     public void onViewClicked(View view) {
-        Intent intent = new Intent(getContext(), ProductMessageActivity.class);
+        Intent intent = new Intent(getContext(), ProductListActivity.class);
         switch (view.getId()) {
 
             case R.id.present_7_iv:

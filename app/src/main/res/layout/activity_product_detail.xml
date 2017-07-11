@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:id="@+id/sell_bar_ll"
+        android:layout_width="fill_parent"
+        android:layout_height="55.0dip"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/custom_service_fl"
+            android:layout_width="50.0dip"
+            android:layout_height="fill_parent"
+            android:background="#ff1b4a6d">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_customer_service_bottom" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/into_cart"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:background="#ff3a668e">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/into_cart"
+                android:textColor="#fff2f2f2"
+                android:textSize="14.0sp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/buy_directly"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:background="#ff6f98c3">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/buy_directly"
+                android:textColor="#fff2f2f2"
+                android:textSize="14.0sp" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/content_lv"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/sell_bar_ll"
+        android:background="#1E2125"
+        android:cacheColorHint="#00000000"
+        android:divider="@null"
+        android:dividerHeight="0.0dip"
+        android:fadingEdge="none"
+        android:listSelector="#00000000"
+        android:scrollbars="none" />
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="48.0dip">
+
+        <ImageView
+            android:id="@+id/left_back_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:paddingLeft="15.0dip"
+            android:paddingRight="15.0dip"
+            android:src="@drawable/ic_back_gray" />
+
+        <RelativeLayout
+            android:id="@+id/cart_rl"
+            android:layout_width="60.0dip"
+            android:layout_height="fill_parent"
+            android:layout_gravity="right">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_cart_gray" />
+
+            <TextView
+                android:id="@+id/cart_count_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="20.0dip"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10.0dip"
+                android:layout_marginTop="5.0dip"
+                android:background="@drawable/bg_cart_msg_num"
+                android:gravity="center"
+                android:minWidth="20.0dip"
+                android:textColor="@android:color/white"
+                android:textSize="11.0sp"
+                android:visibility="gone" />
+        </RelativeLayout>
+    </FrameLayout>
+    <include layout="@layout/shop_cart_pupmenu" />
+</RelativeLayout>

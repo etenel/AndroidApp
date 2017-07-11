@@ -5,6 +5,11 @@ import com.androidapp.util.BaseApplication;
 import com.androidapp.util.CrashUtils;
 import com.androidapp.util.LogUtils;
 import com.androidapp.util.Utils;
+import com.zhy.http.okhttp.OkHttpUtils;
+
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 
 /**
  * Created by etenel on 2017/7/10.
@@ -17,6 +22,14 @@ public class MyApplication extends BaseApplication {
         Utils.init(this);
         initLog();
         initCrash();
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+//                .addInterceptor(new LoggerInterceptor("TAG"))
+                .connectTimeout(10000L, TimeUnit.MILLISECONDS)
+                .readTimeout(10000L, TimeUnit.MILLISECONDS)
+                //其他配置
+                .build();
+
+        OkHttpUtils.initClient(okHttpClient);
     }
 
     public static void initLog() {

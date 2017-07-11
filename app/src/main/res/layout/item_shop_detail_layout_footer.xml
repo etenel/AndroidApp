@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/good_detail_ll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35.0dip"
+        android:orientation="vertical"
+        android:paddingLeft="5.0dip"
+        android:paddingRight="5.0dip">
+
+        <TextView
+            android:id="@+id/item_detail_goodsDesc"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15.0dip"
+            android:layout_marginRight="15.0dip"
+            android:lineSpacingExtra="10.0sp"
+            android:textColor="#ffadadad"
+            android:textSize="10.0sp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15.0dip"
+            android:layout_marginRight="15.0dip"
+            android:layout_marginTop="30.0dip"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0.0dip"
+                android:layout_height="0.5dip"
+                android:layout_weight="1.0"
+                android:background="#ff6f98c3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15.0dip"
+                android:layout_marginRight="15.0dip"
+                android:text="品牌简介"
+                android:textColor="#ffadadad"
+                android:textSize="11.0sp" />
+
+            <View
+                android:layout_width="0.0dip"
+                android:layout_height="0.5dip"
+                android:layout_weight="1.0"
+                android:background="#ff6f98c3" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/item_detail_brandname_top_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15.0dip"
+            android:layout_marginRight="15.0dip"
+            android:layout_marginTop="25.0dip"
+            android:textColor="#ffadadad"
+            android:textSize="13.0dip" />
+
+        <TextView
+            android:id="@+id/item_detail_brand_info"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15.0dip"
+            android:layout_marginRight="15.0dip"
+            android:layout_marginTop="17.5dip"
+            android:lineSpacingExtra="10.0sp"
+            android:textColor="#ffadadad"
+            android:textSize="10.0sp" />
+
+        <LinearLayout
+            android:id="@+id/liangcang_rec_ll"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15.0dip"
+            android:layout_marginRight="15.0dip"
+            android:layout_marginTop="25.0dip"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0.0dip"
+                android:layout_height="0.5dip"
+                android:layout_weight="1.0"
+                android:background="#ff6f98c3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15.0dip"
+                android:layout_marginRight="15.0dip"
+                android:text="良仓推荐"
+                android:textColor="#ffadadad"
+                android:textSize="11.0sp" />
+
+            <View
+                android:layout_width="0.0dip"
+                android:layout_height="0.5dip"
+                android:layout_weight="1.0"
+                android:background="#ff6f98c3" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/liangcang_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="18.0dip"
+            android:src="@drawable/ic_liangcang_recommend" />
+
+        <TextView
+            android:id="@+id/rec_reason_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15.0dip"
+            android:layout_marginRight="15.0dip"
+            android:layout_marginTop="25.0dip"
+            android:lineSpacingExtra="10.0sp"
+            android:textColor="#ffadadad"
+            android:textSize="10.0sp" />
+
+        <LinearLayout
+            android:id="@+id/guess_like_ll"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15.0dip"
+            android:layout_marginRight="15.0dip"
+            android:layout_marginTop="25.0dip"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <View
+                android:layout_width="0.0dip"
+                android:layout_height="0.5dip"
+                android:layout_weight="1.0"
+                android:background="#ff6f98c3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15.0dip"
+                android:layout_marginRight="15.0dip"
+                android:text="猜你喜欢"
+                android:textColor="#ffadadad"
+                android:textSize="11.0sp" />
+
+            <View
+                android:layout_width="0.0dip"
+                android:layout_height="0.5dip"
+                android:layout_weight="1.0"
+                android:background="#ff6f98c3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18.0dip"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/like_good_ll_1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" />
+
+            <LinearLayout
+                android:id="@+id/like_good_ll_2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12.0dip"
+                android:orientation="horizontal" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/shop_note_ll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15.0dip"
+        android:layout_marginRight="15.0dip"
+        android:layout_marginTop="35.0dip"
+        android:orientation="vertical"
+        android:paddingLeft="5.0dip"
+        android:paddingRight="5.0dip"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/shopping_tip_tv"
+            android:text="@string/newrecommend"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="10.0sp"
+            android:textColor="#ffadadad"
+            android:textSize="10.0sp" />
+
+        <TextView
+            android:id="@+id/after_sale_tv"
+            android:layout_width="100.0dip"
+            android:layout_height="30.0dip"
+            android:layout_marginBottom="35.0dip"
+            android:layout_marginTop="35.0dip"
+            android:background="#ff444950"
+            android:gravity="center"
+            android:text="@string/notice_after_sale"
+            android:textColor="#ff808080"
+            android:textSize="11.0sp" />
+    </LinearLayout>
+</RelativeLayout>

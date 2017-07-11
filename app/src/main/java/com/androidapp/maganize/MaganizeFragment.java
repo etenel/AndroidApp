@@ -25,6 +25,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.chad.library.adapter.base.BaseQuickAdapter.SLIDEIN_BOTTOM;
+
 /**
  * Created by etenel on 2017/7/6.
  */
@@ -44,6 +46,7 @@ public class MaganizeFragment extends BaseFragment {
 
     private MagnizeAdapter adapter;
     public List<MagnizeBean.Data.Items.ProductBean> datas;
+
     @Override
     public int getlayoutid() {
         return R.layout.fragment_maganize;
@@ -62,10 +65,9 @@ public class MaganizeFragment extends BaseFragment {
             public void onSuccess(String response) {
                 MagnizeBean magnizeBean = JSON.parseObject(response, MagnizeBean.class);
                 datas = magnizeBean.getData().getItems().getDatas();
-
-
                 LinearLayoutManager layoutMgr = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
                 adapter = new MagnizeAdapter(R.layout.item_mag, datas);
+                adapter.openLoadAnimation(SLIDEIN_BOTTOM);
                 recycle.setAdapter(adapter);
                 recycle.setLayoutManager(layoutMgr);
                 adapter.setOnItemClickListener((adapter1, view, position) -> {

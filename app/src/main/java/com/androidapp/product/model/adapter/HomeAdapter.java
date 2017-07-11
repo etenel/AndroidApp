@@ -31,6 +31,7 @@ public class HomeAdapter extends BaseQuickAdapter<HomeBean.DataBean.ItemsBean.Li
             }
         });
         getMultiTypeDelegate().registerItemType(1, R.layout.home_item1)
+                .registerItemType(6, R.layout.home_item1)
                 .registerItemType(2, R.layout.home_item2)
                 .registerItemType(4, R.layout.home_item4);
 
@@ -41,14 +42,23 @@ public class HomeAdapter extends BaseQuickAdapter<HomeBean.DataBean.ItemsBean.Li
         switch (helper.getItemViewType()) {
             case 1:
                 Glide.with(mContext).load(item.getOne().getPic_url()).into((ImageView) helper.getView(R.id.image_home));
-                LogUtils.e("TAG","url="+item.getOne().getTopic_url());
-                LogUtils.json("TAG",item.getOne().getTopic_name());
+                LogUtils.e("TAG", "url=" + item.getOne().getTopic_url());
+                LogUtils.json("TAG", item.getOne().getTopic_name());
                 helper.getView(R.id.image_home).setOnClickListener(view -> {
                     Intent intent = new Intent(mContext, WebViewActivity2.class);
                     intent.putExtra(Constants.TOPIC, item.getOne().getTopic_url());
 
                     mContext.startActivity(intent);
                 });
+                break;
+            case 6:
+                Glide.with(mContext).load(R.drawable.brand_bg).into((ImageView) helper.getView(R.id.image_home));
+//                LogUtils.e("TAG", "url=" + item.getOne().getTopic_url());
+//                helper.getView(R.id.image_home).setOnClickListener(view -> {
+//                    Intent intent = new Intent(mContext, WebViewActivity2.class);
+//                    intent.putExtra(Constants.TOPIC, item.getOne().getTopic_url());
+//                    mContext.startActivity(intent);
+//                });
                 break;
             case 2:
                 Glide.with(mContext).load(item.getOne().getPic_url()).into((ImageView) helper.getView(R.id.home2_image1));

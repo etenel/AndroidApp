@@ -102,7 +102,7 @@ public class BrandActivity extends AppCompatActivity {
                 }
             });
             adapter.setOnItemClickListener((adapter1, view, position) -> {
-                Intent intent = new Intent(BrandActivity.this, WebViewActivity.class);
+                Intent intent = new Intent(BrandActivity.this, ProductDetailActivity.class);
                 intent.putExtra(Constants.WEBURL, datas.get(position).getGoods_id());
                 startActivity(intent);
             });

@@ -155,7 +155,7 @@ public class TalentDetailActivity extends AppCompatActivity {
                             recycle.setAdapter(likeAdapter);
                             recycle.setLayoutManager(new GridLayoutManager(TalentDetailActivity.this, 3, GridLayoutManager.VERTICAL, false));
                             likeAdapter.setOnItemClickListener((adapter, view12, position) -> {
-                                Intent intent = new Intent(TalentDetailActivity.this, WebViewActivity.class);
+                                Intent intent = new Intent(TalentDetailActivity.this, ProductDetailActivity.class);
                                 intent.putExtra(Constants.WEBURL, goods.get(position).getGoods_id());
                                 startActivity(intent);
                             });
@@ -180,7 +180,7 @@ public class TalentDetailActivity extends AppCompatActivity {
                             recycle.setAdapter(recommendAdapter);
                             recycle.setLayoutManager(new GridLayoutManager(TalentDetailActivity.this, 3, GridLayoutManager.VERTICAL, false));
                             recommendAdapter.setOnItemClickListener((adapter, view13, position) -> {
-                                Intent intent = new Intent(TalentDetailActivity.this, WebViewActivity.class);
+                                Intent intent = new Intent(TalentDetailActivity.this, ProductDetailActivity.class);
                                 intent.putExtra(Constants.WEBURL, goods.get(position).getGoods_id());
                                 startActivity(intent);
                             });

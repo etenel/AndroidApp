@@ -13,4 +13,11 @@
     <string name="newrecommend">最新推荐</string>
     <string name="newjoiner">最新加入</string>
     <string name="baisi">百思不得姐</string>
+    <string name="select_all">全选</string>
+    <string name="settlement">结算</string>
+    <string name="confirm">确定</string>
+    <string name="into_cart">加入购物车</string>
+    <string name="buy_directly">直接购买</string>
+    <string name="amount">数量</string>
+    <string name="notice_after_sale">售后须知</string>
 </resources>

@@ -2,12 +2,16 @@ package com.androidapp.activity;
 
 import android.content.Intent;
 import android.graphics.Rect;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -25,7 +29,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ProductMessageActivity extends AppCompatActivity {
+public class ProductListActivity extends AppCompatActivity {
 
     @BindView(R.id.recycle_msg)
     RecyclerView recycleMsg;
@@ -40,6 +44,15 @@ public class ProductMessageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // 设置contentFeature,可使用切换动画
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        Transition explode = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            explode = TransitionInflater.from(this).inflateTransition(android.R.transition.slide_right);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setEnterTransition(explode);
+        }
         setContentView(R.layout.activity_product_message);
         ButterKnife.bind(this);
         left.setImageResource(R.drawable.ease_back);
@@ -61,12 +74,12 @@ public class ProductMessageActivity extends AppCompatActivity {
                 PAdapter = new ProductMessageAdapter(R.layout.item_proc_msg, datas);
                 recycleMsg.setAdapter(PAdapter);
 
-                gridLayoutManager = new GridLayoutManager(ProductMessageActivity.this, 2, GridLayoutManager.VERTICAL, false);
+                gridLayoutManager = new GridLayoutManager(ProductListActivity.this, 2, GridLayoutManager.VERTICAL, false);
                 //gridLayoutManager.setMeasuredDimension(10, 10);
                 recycleMsg.setLayoutManager(gridLayoutManager);
 
                 PAdapter.setOnItemClickListener((adapter, view, position) -> {
-                    Intent intent = new Intent(ProductMessageActivity.this, WebViewActivity.class);
+                    Intent intent = new Intent(ProductListActivity.this, ProductDetailActivity.class);
                     intent.putExtra(Constants.WEBURL, datas.get(position).getGoods_id());
                     startActivity(intent);
                 });

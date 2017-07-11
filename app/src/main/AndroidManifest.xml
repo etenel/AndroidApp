@@ -20,8 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".mainactivity.MainActivity" />
-        <activity android:name=".activity.ProductMessageActivity" />
-        <activity android:name=".activity.WebViewActivity" />
+        <activity android:name=".activity.ProductListActivity" />
+        <activity android:name=".activity.ProductDetailActivity" />
         <activity android:name=".activity.BrandActivity" />
         <activity android:name=".activity.WebViewActivity2" />
         <activity android:name=".activity.TalentDetailActivity" />
@@ -30,7 +30,8 @@
             android:launchMode="singleTask" />
         <activity
             android:name=".activity.MaginazeActivity"
-            android:launchMode="singleTask"></activity>
+            android:launchMode="singleTask" />
+        <activity android:name=".activity.ShopCartActivity"></activity>
     </application>
 
 </manifest>
