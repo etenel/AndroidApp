@@ -4,6 +4,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.view.Window;
@@ -15,6 +16,7 @@ import com.androidapp.R;
 import com.androidapp.mainactivity.presenter.IMainPresenter;
 import com.androidapp.mainactivity.presenter.MainPresenter;
 import com.androidapp.mainactivity.view.IMainActivity;
+import com.androidapp.util.LogUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,6 +56,16 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
         fragmentManager = getSupportFragmentManager();
         mainPresenter = new MainPresenter(this, this);
         initListener();
+        String action = getIntent().getAction();
+        LogUtils.e(action);
+        if(action!=null&&!TextUtils.isEmpty(action)) {
+            if (action.equals("com.androidapp.main.maganize")) {
+                rgGroup.check(R.id.rb_magazine);
+            } else if (action.equals("com.androidapp.main.shop")) {
+                rgGroup.check(R.id.rb_product);
+            }
+        }
+
     }
 
     @Override

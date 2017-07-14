@@ -8,6 +8,7 @@ import android.transition.TransitionInflater;
 import android.view.Window;
 
 import com.androidapp.R;
+import com.androidapp.util.BarUtils;
 
 public class ShopCartActivity extends AppCompatActivity {
 
@@ -23,6 +24,7 @@ public class ShopCartActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setEnterTransition(explode);
         }
+        BarUtils.setTranslucentForCoordinatorLayout(this, 0);
         setContentView(R.layout.activity_shop_cart);
     }
 }

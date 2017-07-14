@@ -58,7 +58,9 @@ public class MaginazeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_maginaze);
         ButterKnife.bind(this);
         initTitle();
+
         initData();
+
     }
 
     private void initTitle() {

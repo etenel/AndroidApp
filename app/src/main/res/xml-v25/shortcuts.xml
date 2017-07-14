@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/qzone_forward_normal"
+        android:shortcutDisabledMessage="@string/persion"
+        android:shortcutId="recommend"
+        android:shortcutLongLabel="@string/magnizelist"
+        android:shortcutShortLabel="@string/magnizelist">
+        <intent
+            android:action="com.androidapp.main.maganize"
+            android:targetClass="com.androidapp.mainactivity.MainActivity"
+            android:targetPackage="com.androidapp"></intent>
+        <intent
+            android:action="com.androidapp.MAGNIZE"
+            android:targetClass="com.androidapp.activity.Maganizetype"
+            android:targetPackage="com.androidapp" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/down_success"
+        android:shortcutDisabledMessage="@string/persion"
+        android:shortcutId="baisi"
+        android:shortcutLongLabel="@string/baisi"
+        android:shortcutShortLabel="@string/baisi">
+        >
+        <intent
+            android:action="com.androidapp.BAISI"
+            android:targetClass="com.androidapp.activity.BaisiRecommend"
+            android:targetPackage="com.androidapp" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/rt"
+        android:shortcutDisabledMessage="@string/persion"
+        android:shortcutId="shopcart"
+        android:shortcutLongLabel="@string/shop_cart"
+        android:shortcutShortLabel="@string/shop_cart">
+        <intent
+            android:action="com.androidapp.main.shop"
+            android:targetClass="com.androidapp.mainactivity.MainActivity"
+            android:targetPackage="com.androidapp"></intent>
+        <intent
+            android:action="com.androidapp.shopcart"
+            android:targetClass="com.androidapp.activity.ShopCartActivity"
+            android:targetPackage="com.androidapp"></intent>
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_follows_sinafriends_checked"
+        android:shortcutDisabledMessage="@string/persion"
+        android:shortcutId="jumpweibo"
+        android:shortcutLongLabel="@string/weibo"
+        android:shortcutShortLabel="@string/weibo">
+        <intent
+            android:action="com.androidapp.weibo"
+            android:targetClass="com.androidapp.activity.JumptoWeiBo"
+            android:targetPackage="com.androidapp"></intent>
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+</shortcuts>

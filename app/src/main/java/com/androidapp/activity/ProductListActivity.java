@@ -1,5 +1,6 @@
 package com.androidapp.activity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Build;
@@ -12,6 +13,7 @@ import android.transition.TransitionInflater;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -37,6 +39,8 @@ public class ProductListActivity extends AppCompatActivity {
     ImageView left;
     @BindView(R.id.price_selector)
     LinearLayout priceSelector;
+    @BindView(R.id.right)
+    ImageButton right;
     private List<HomeHouseBean.DataBean.ItemsBean> datas;
     private ProductMessageAdapter PAdapter;
     private String url;
@@ -120,8 +124,20 @@ public class ProductListActivity extends AppCompatActivity {
 
     }
 
-    @OnClick(R.id.left)
-    public void onViewClicked() {
-        finish();
+    @OnClick({R.id.left, R.id.right})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.left:
+                finish();
+                break;
+            case R.id.right:
+                Intent intent = new Intent(this, ShopCartActivity.class);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                } else {
+                    startActivity(intent);
+                }
+                break;
+        }
     }
 }

@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.androidapp.activity.Maganizetype">
-
+<android.support.v7.widget.Toolbar
+    android:layout_width="match_parent"
+    android:layout_height="25dp"></android.support.v7.widget.Toolbar>
     <android.support.design.widget.TabLayout
         android:id="@+id/tab"
         android:layout_width="match_parent"

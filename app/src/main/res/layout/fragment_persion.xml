@@ -2,11 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-<TextView
+<Button
+    android:id="@+id/jump"
+    android:onClick="jump"
     android:text="@string/persion"
     android:gravity="center"
     android:textColor="@android:color/background_dark"
     android:drawableTop="@drawable/ic_cart_gray"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    android:layout_height="wrap_content" />
 </LinearLayout>

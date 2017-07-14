@@ -1,7 +1,10 @@
 package com.androidapp.activity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -14,22 +17,33 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.androidapp.GoodsInfo;
 import com.androidapp.R;
+import com.androidapp.app.MyApplication;
+import com.androidapp.base.FlowRadioGroup;
 import com.androidapp.constant.Constants;
 import com.androidapp.nethelper.NetConfig;
 import com.androidapp.nethelper.NetUtils;
 import com.androidapp.product.model.adapter.ProductDetailAdapter;
 import com.androidapp.product.model.bean.GoodsBean;
+import com.androidapp.util.BarUtils;
 import com.androidapp.util.LogUtils;
+import com.androidapp.util.ToastUtils;
 import com.bumptech.glide.Glide;
+import com.greendao.gen.GoodsInfoDao;
 import com.rd.PageIndicatorView;
+import com.rd.utils.DensityUtils;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,10 +68,6 @@ public class ProductDetailActivity extends AppCompatActivity {
     RelativeLayout cartRl;
     @BindView(R.id.confirm_tv)
     TextView confirmTv;
-    @BindView(R.id.into_cart_tv)
-    TextView intoCartTv;
-    @BindView(R.id.buy_directly_tv)
-    TextView buyDirectlyTv;
     @BindView(R.id.bottom_action_bar)
     LinearLayout bottomActionBar;
     @BindView(R.id.brand_name_tv)
@@ -86,6 +96,8 @@ public class ProductDetailActivity extends AppCompatActivity {
     ImageView close;
     @BindView(R.id.cart_pupmenu)
     RelativeLayout cartPupmenu;
+    @BindView(R.id.shop_cart)
+    ImageView shopCart;
     //尾部局
     private LinearLayout shop_note_ll;
     private TextView item_detail_goodsDesc;
@@ -125,12 +137,135 @@ public class ProductDetailActivity extends AppCompatActivity {
     public List<GoodsBean.DataBean.ItemsBean.GoodsInfoBean> goods_info;
     private ProductDetailAdapter adapter;
 
+
+    private GoodsInfoDao dao;
+    private GoodsInfo goodsInfo = new GoodsInfo();
+
+    public List<GoodsBean.DataBean.ItemsBean.SkuInvBean> sku_inv;
+    public String image;
+    public String gooddesc;
+    public int counts;
+    public double price;
+    public double disprice;
+    private HashMap<String, String> sku_goods = new HashMap<>();
+    private HashMap<String, String> attr_keys = new HashMap<>();
+    public String attr_id = "";
+    public GoodsBean.DataBean.ItemsBean.SkuInvBean skuInvBean;
+    public boolean isliked = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
+        dao = MyApplication.getApplication().getmDaoSession().getGoodsInfoDao();
+        BarUtils.hideNotificationBar(this);
         ButterKnife.bind(this);
         initdata();
+
+    }
+
+    private void initDetail() {
+        if (items != null) {
+            goods_info = items.getGoods_info();
+            brandNameTv.setText(items.getBrand_info().getBrand_name());
+            goodNameTv.setText(items.getGoods_name());
+            // priceTv.setText(TextUtils.isEmpty(items.getDiscount_price()) ? "￥" + items.getPrice() : "￥" + items.getDiscount_price());
+            List<GoodsBean.DataBean.ItemsBean.SkuInfoBean> sku_info = items.getSku_info();
+            sku_inv = items.getSku_inv();
+
+            for (int i = 0; i < sku_info.size(); i++) {
+                FlowRadioGroup sku_attr = new FlowRadioGroup(this);
+                TextView skv_type1_name = new TextView(this);
+                skv_type1_name.setText(sku_info.get(i).getType_name());
+                skv_type1_name.setTextColor(Color.parseColor("#ffcccccc"));
+                skv_type1_name.setTextSize(12);
+                skv_type1_name.setPadding(0, 10, 20, 10);
+                sku_goods.put(skv_type1_name.getText().toString(), "");
+                attr_keys.put(String.valueOf(i), "");
+                // skv_type1_name.setBackgroundColor(Color.parseColor("#ff424950"));
+                skuLl.addView(skv_type1_name);
+                if (sku_info.get(i).getAttrList() != null && sku_info.get(i).getAttrList().size() > 0) {
+                    sku_attr.setOrientation(FlowRadioGroup.HORIZONTAL);
+                    int size = sku_info.get(i).getAttrList().size();
+                    for (int i1 = 0; i1 < size; i1++) {
+                        List<GoodsBean.DataBean.ItemsBean.SkuInfoBean.AttrListBean> attrList = sku_info.get(i).getAttrList();
+                        RadioButton skv_attr_name = new RadioButton(this);
+                        FlowRadioGroup.LayoutParams layoutParams = new FlowRadioGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                        int margin = DensityUtils.dpToPx(10);
+                        layoutParams.setMargins(0, margin, margin, margin);
+                        skv_attr_name.setText(attrList.get(i1).getAttr_name());
+                        skv_attr_name.setPadding(20, 10, 20, 10);
+                        skv_attr_name.setId(i1);
+                        skv_attr_name.setTextSize(12);
+                        skv_attr_name.setBackground(getResources().getDrawable(R.drawable.attr_bg_check));
+                        skv_attr_name.setTextColor(Color.parseColor("#ffcccccc"));
+                        int finalI = i;
+                        skv_attr_name.setOnCheckedChangeListener((compoundButton, b) -> {
+                            if (b) {
+                                //选中
+                                skv_attr_name.setBackground(getResources().getDrawable(R.drawable.attr_bg_checked));
+                                sku_goods.put(skv_type1_name.getText().toString(), skv_attr_name.getText().toString());
+
+
+                                //设置种类组合，根据组合的attr_id获取价格
+                                attr_keys.put(String.valueOf(finalI), attrList.get(skv_attr_name.getId()).getAttr_id());
+                                //LogUtils.e(attrList.get(skv_attr_name.getId()).getAttr_id());
+                                //LogUtils.e(skv_type1_name.getText().toString() + ":" + skv_attr_name.getText().toString());
+                                for (int i2 = 0; i2 < attr_keys.size(); i2++) {
+                                    String s = attr_keys.get(String.valueOf(i2));
+                                    if (i2 == 0) {
+                                        attr_id = s;
+                                    } else {
+                                        attr_id = attr_id + "," + s;
+                                    }
+                                }
+                                LogUtils.e(":" + attr_id.toString());
+
+                                //设置显示图片
+                                LogUtils.e(skv_attr_name.getId());
+                                LogUtils.e(attrList.get(skv_attr_name.getId()).getImg_path());
+                                if (!TextUtils.isEmpty(attrList.get(skv_attr_name.getId()).getImg_path())) {
+                                    Glide.with(this).load(attrList.get(skv_attr_name.getId()).getImg_path()).into(skuIv);
+                                    image = attrList.get(skv_attr_name.getId()).getImg_path();
+                                } else {
+                                    Glide.with(ProductDetailActivity.this).load(items.getImages_item().get(0)).into(skuIv);
+                                    image = items.getImages_item().get(0);
+                                }
+                                //设置价格
+                                for (int i2 = 0; i2 < sku_inv.size(); i2++) {
+                                    // LogUtils.e(sku_inv.get(i2).getAttr_keys());
+                                    skuInvBean = sku_inv.get(i2);
+                                    if (skuInvBean.getAttr_keys().equals(attr_id)) {
+                                        if (!TextUtils.isEmpty(skuInvBean.getDiscount_price())) {
+                                            priceTv.setText(skuInvBean.getDiscount_price());
+                                        } else {
+                                            priceTv.setText(skuInvBean.getPrice());
+                                        }
+                                        return;
+                                    }
+                                }
+                            } else {
+                                skv_attr_name.setBackground(getResources().getDrawable(R.drawable.attr_bg_check));
+
+                            }
+                        });
+//                        if (i1 == 0) {
+//                            skv_attr_name.setBackground(getResources().getDrawable(R.drawable.attr_bg_checked));
+//                        }
+                        skv_attr_name.setButtonDrawable(null);
+                        skv_attr_name.setOnClickListener(view -> ToastUtils.showShortSafe(skv_attr_name.getText().toString()));
+                        // sku_attr.addView(skv_attr_name, layoutParams);
+                        sku_attr.addView(skv_attr_name,layoutParams);
+
+                    }
+                    skuLl.addView(sku_attr);
+
+                }
+                sku_attr.check(0);
+            }
+
+        }
+
     }
 
     private void initdata() {
@@ -141,8 +276,8 @@ public class ProductDetailActivity extends AppCompatActivity {
             public void onSuccess(String response) {
                 GoodsBean goodsBean = JSON.parseObject(response, GoodsBean.class);
                 items = goodsBean.getData().getItems();
-                goods_info = items.getGoods_info();
                 adapter = new ProductDetailAdapter(goods_info);
+                initDetail();
                 addFootview();
                 addHeadview();
                 contentLv.setAdapter(adapter);
@@ -186,12 +321,27 @@ public class ProductDetailActivity extends AppCompatActivity {
             intent.putExtra(Constants.BRANDDETAIL, NetConfig.BRAND_DETAILS_URL + items.getBrand_info().getBrand_id());
             startActivity(intent);
         });
+        hSize_choose_rl.setOnClickListener(view -> {
+            sellBarLl.setVisibility(View.GONE);
+            cartPupmenu.setVisibility(View.VISIBLE);
+        });
         hPage_indicator.setViewPager(hItem_viewpager);
         //设置进入时位置
         // hPage_indicator.setSelection(1);
         //设置从左还是从右滑动
         //hPage_indicator.setRtlMode(RtlMode.Off);
+        hItem_detail_love.setOnClickListener(view -> {
+            if (isliked == false) {
+                Glide.with(this).load(R.drawable.like_big).into(hItem_detail_love);
+                hItem_detail_likedCount.setText((Integer.parseInt(hItem_detail_likedCount.getText().toString()) + 1) + "");
+                isliked = true;
+            } else {
+                Glide.with(this).load(R.drawable.like_not_big).into(hItem_detail_love);
+                hItem_detail_likedCount.setText((Integer.parseInt(hItem_detail_likedCount.getText().toString()) - 1) + "");
+                isliked = false;
+            }
 
+        });
         adapter.addHeaderView(v);
 
         //商品详情
@@ -224,9 +374,17 @@ public class ProductDetailActivity extends AppCompatActivity {
         adapter.addFooterView(v);
     }
 
-    @OnClick({R.id.into_cart, R.id.buy_directly, R.id.left_back_iv, R.id.cart_rl, R.id.custom_service_fl, R.id.close})
+    @OnClick({R.id.shop_cart, R.id.into_cart, R.id.buy_directly, R.id.left_back_iv, R.id.cart_rl, R.id.custom_service_fl, R.id.close, R.id.minus_iv, R.id.plus_iv, R.id.bottom_action_bar})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.shop_cart:
+                Intent intent = new Intent(this, ShopCartActivity.class);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                } else {
+                    startActivity(intent);
+                }
+                break;
             case R.id.into_cart:
                 sellBarLl.setVisibility(View.GONE);
                 cartPupmenu.setVisibility(View.VISIBLE);
@@ -245,6 +403,63 @@ public class ProductDetailActivity extends AppCompatActivity {
             case R.id.close:
                 cartPupmenu.setVisibility(View.GONE);
                 sellBarLl.setVisibility(View.VISIBLE);
+                break;
+            case R.id.minus_iv:
+                //减小数量
+                String count = amountTv.getText().toString();
+                int anInt = Integer.parseInt(count);
+                if (anInt == 1) {
+                    minusIv.setEnabled(false);
+                } else {
+                    anInt--;
+                    amountTv.setText(anInt + "");
+                }
+
+                break;
+            case R.id.plus_iv:
+                //增加数量
+                int addcount = Integer.parseInt(amountTv.getText().toString()) + 1;
+                amountTv.setText(addcount + "");
+                if (addcount > 1) {
+                    minusIv.setEnabled(true);
+                }
+
+                break;
+            case R.id.bottom_action_bar:
+                /**
+                 *  private Long id;
+                 private String image;
+                 private String gooddesc;
+                 private String sku_goods;
+                 private int count;
+                 private double price;
+                 private double disprice;
+                 */
+                gooddesc = items.getBrand_info().getBrand_name() + items.getGoods_name();
+                counts = Integer.parseInt(amountTv.getText().toString());
+                price = Double.parseDouble(priceTv.getText().toString());
+                disprice = 0.00;
+                if (items.getDiscount_price() != null && !TextUtils.isEmpty(items.getDiscount_price())) {
+                    disprice = Double.parseDouble(items.getDiscount_price().toString());
+                }
+                String content = "";
+                //iterator遍历
+                Iterator<Map.Entry<String, String>> iterator = sku_goods.entrySet().iterator();
+                while (iterator.hasNext()) {
+                    Map.Entry<String, String> entry = iterator.next();
+                    content = content + entry.getKey() + ":" + entry.getValue() + ";";
+                    LogUtils.e(content);
+                }
+//                Iterator<Map.Entry<String, String>> attr = attr_keys.entrySet().iterator();
+//                while (attr.hasNext()) {
+//                    Map.Entry<String, String> entry = attr.next();
+//                    LogUtils.e(entry.getKey() + ":" + entry.getValue());
+//                }
+
+                goodsInfo = new GoodsInfo(image, gooddesc, content, counts, price, disprice);
+                dao.insert(goodsInfo);
+                sellBarLl.setVisibility(View.VISIBLE);
+                cartPupmenu.setVisibility(View.GONE);
                 break;
         }
     }

@@ -1,10 +1,11 @@
-package com.androidapp;
+package com.androidapp.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import com.androidapp.R;
 import com.androidapp.mainactivity.MainActivity;
 import com.bumptech.glide.Glide;
 

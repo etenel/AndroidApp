@@ -56,6 +56,8 @@ public class Maganizetype extends AppCompatActivity {
             getWindow().setEnterTransition(explode);
         }
         setContentView(R.layout.activity_maganizetype);
+        BarUtils.setStatusBarColor(this,Color.WHITE);
+        BarUtils.setTranslucentForCoordinatorLayout(this, 0);
         ButterKnife.bind(this);
         initData();
     }
@@ -72,6 +74,7 @@ public class Maganizetype extends AppCompatActivity {
         tab.post(() -> {
             BarUtils.setIndicator(tab, 70, 70);
         });
+        viewpager.setCurrentItem(1);
     }
 
     @OnClick(R.id.bar)

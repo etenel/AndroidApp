@@ -12,51 +12,20 @@
         android:layout_marginTop="118.0dip"
         android:background="#ff1e2125" />
 
-    <LinearLayout
-        android:id="@+id/bottom_action_bar"
-        android:layout_width="fill_parent"
-        android:layout_height="55.0dip"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/confirm_tv"
-            android:layout_width="0.0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="1.0"
-            android:background="#ff6f98c3"
-            android:gravity="center"
-            android:text="@string/confirm"
-            android:textColor="#fff2f2f2"
-            android:textSize="14.0sp" />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/into_cart_tv"
-            android:layout_width="0.0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="1.0"
-            android:background="#ff3a668e"
-            android:gravity="center"
-            android:text="@string/into_cart"
-            android:textColor="#ffffffff"
-            android:textSize="14.0sp" />
 
-        <TextView
-            android:id="@+id/buy_directly_tv"
-            android:layout_width="0.0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="1.0"
-            android:background="#ff6f98c3"
-            android:gravity="center"
-            android:text="@string/buy_directly"
-            android:textColor="#ffffffff"
-            android:textSize="14.0sp" />
-    </LinearLayout>
-
+</RelativeLayout>
     <ScrollView
+        android:layout_above="@+id/bottom_action_bar"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_above="@+id/bottom_action_bar">
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -189,4 +158,22 @@
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
+    <LinearLayout
+        android:id="@+id/bottom_action_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="55.0dip"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/confirm_tv"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:background="#ff6f98c3"
+            android:gravity="center"
+            android:text="@string/confirm"
+            android:textColor="#fff2f2f2"
+            android:textSize="14.0sp" />
+    </LinearLayout>
 </RelativeLayout>

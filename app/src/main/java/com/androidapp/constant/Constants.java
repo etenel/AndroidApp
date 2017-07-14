@@ -31,4 +31,7 @@ public class Constants {
     };
     public static final String MAGAUTHORNAME = "authorname";
     public static String MAGINIZEdetail = "MAGIN";
+    public static int[] BSRECOMMEND_TYPE = new int[]{0, 1, 2, 3,4};
+
+
 }
