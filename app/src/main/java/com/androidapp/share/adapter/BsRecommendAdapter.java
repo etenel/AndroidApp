@@ -107,7 +107,7 @@ public class BsRecommendAdapter extends BaseQuickAdapter<BSRecommendBean.ListBea
                 break;
             case 1:
                 helper.setText(R.id.tv_context, item.getText());
-                Glide.with(mContext).asGif().load(item.getGif().getImages().get(0)).into((ImageView) helper.getView(R.id.iv_image_gif));
+                Glide.with(mContext).load(item.getGif().getImages().get(0)).asGif().into((ImageView) helper.getView(R.id.iv_image_gif));
 
                 break;
             case 2:

@@ -21,8 +21,9 @@ import com.androidapp.product.model.bean.BrandDetailBean;
 import com.androidapp.util.ImageUtils;
 import com.androidapp.util.LogUtils;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.transition.Transition;
+
 
 import java.util.List;
 
@@ -122,12 +123,13 @@ public class BrandActivity extends AppCompatActivity {
                     initdetail();
                     brandStoryContentTv.setText(datas.get(0).getBrand_info().getBrand_desc());
                 }
-                Glide.with(BrandActivity.this).asBitmap().load(imageurl).into(new SimpleTarget<Bitmap>() {
+                Glide.with(BrandActivity.this).load(imageurl).asBitmap().into(new SimpleTarget<Bitmap>() {
                     @Override
-                    public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
+                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
                         Bitmap bitmap = ImageUtils.toRound(resource);
                         brandLogo.setImageBitmap(bitmap);
                     }
+
                 });
 
 

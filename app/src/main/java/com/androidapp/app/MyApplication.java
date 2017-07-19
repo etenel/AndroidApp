@@ -9,10 +9,15 @@ import com.androidapp.util.LogUtils;
 import com.androidapp.util.Utils;
 import com.greendao.gen.DaoMaster;
 import com.greendao.gen.DaoSession;
+import com.hyphenate.chat.EMOptions;
+import com.hyphenate.easeui.EaseUI;
+import com.mob.MobSDK;
+import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 import java.util.concurrent.TimeUnit;
 
+import cn.jpush.android.api.JPushInterface;
 import okhttp3.OkHttpClient;
 
 /**
@@ -25,14 +30,24 @@ public class MyApplication extends BaseApplication {
     private DaoMaster.DevOpenHelper mHelper;
     private DaoMaster mDaoMaster;
     private DaoSession mDaoSession;
+    protected String a() {
+        return null;
+    }
+
+    protected String b() {
+        return null;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
         myApplication=this;
+        ZXingLibrary.initDisplayOpinion(this);
         setDatabase();
         Utils.init(this);
         initLog();
         initCrash();
+        MobSDK.init(this, this.a(), this.b());
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
 //                .addInterceptor(new LoggerInterceptor("TAG"))
                 .connectTimeout(10000L, TimeUnit.MILLISECONDS)
@@ -41,6 +56,14 @@ public class MyApplication extends BaseApplication {
                 .build();
 
         OkHttpUtils.initClient(okHttpClient);
+        //初始化环信sdk
+        EMOptions options = new EMOptions();//配置一些功能
+        //是否自动接受群组邀请
+        options.setAutoAcceptGroupInvitation(false);
+        //是否自动接受邀请
+        options.setAcceptInvitationAlways(false);
+        EaseUI.getInstance().init(this,options);
+        JPushInterface.init(this);
     }
 public static MyApplication getApplication(){
         return myApplication;

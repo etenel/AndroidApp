@@ -34,4 +34,5 @@ public class Constants {
     public static int[] BSRECOMMEND_TYPE = new int[]{0, 1, 2, 3,4};
 
 
+    public static String REQUEST_QR="request_qr";
 }

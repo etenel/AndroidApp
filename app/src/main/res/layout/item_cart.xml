@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#ff292d32"
+    android:paddingLeft="20.0dip"
+    android:paddingRight="20.0dip">
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dip"
+        android:background="#ff3c4146" />
+
+    <CheckBox
+        android:id="@+id/cb_gov"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:checked="true"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:id="@+id/good_image_iv"
+        android:layout_width="50.0dip"
+        android:layout_height="50.0dip"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="24.0dip"
+        android:layout_marginRight="20.0dip"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="24.0dip"
+        android:src="@drawable/ic_default_good" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/good_image_iv"
+        android:layout_marginRight="25.0dip"
+        android:layout_toRightOf="@+id/good_image_iv"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/good_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="#ffcccccc"
+            android:textSize="11.0sp" />
+
+        <TextView
+            android:id="@+id/good_name_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3.0dip"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="#ff909191"
+            android:textSize="12.0sp" />
+
+        <TextView
+            android:id="@+id/good_price_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5.0dip"
+            android:textColor="#ff6f98c3"
+            android:textSize="12.5sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/good_amount_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/good_image_iv"
+        android:layout_alignParentRight="true"
+        android:textColor="#ff909191"
+        android:textSize="13.0sp" />
+</RelativeLayout>

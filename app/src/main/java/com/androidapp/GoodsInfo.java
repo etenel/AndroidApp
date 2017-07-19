@@ -17,9 +17,19 @@ public class GoodsInfo {
     private int count;
     private double price;
     private double disprice;
-    @Generated(hash = 1794490809)
-    public GoodsInfo(Long id, String image, String gooddesc, String content,
-            int count, double price, double disprice) {
+    public boolean ischecked = true;
+
+    public boolean ischecked() {
+        return ischecked;
+    }
+
+    public void setIschecked(boolean ischecked) {
+        this.ischecked = ischecked;
+    }
+
+    @Generated(hash = 1667412391)
+    public GoodsInfo(Long id, String image, String gooddesc, String content, int count, double price,
+                     double disprice, boolean ischecked) {
         this.id = id;
         this.image = image;
         this.gooddesc = gooddesc;
@@ -27,7 +37,9 @@ public class GoodsInfo {
         this.count = count;
         this.price = price;
         this.disprice = disprice;
+        this.ischecked = ischecked;
     }
+
     @Generated(hash = 1227172248)
     public GoodsInfo() {
     }
@@ -39,48 +51,66 @@ public class GoodsInfo {
         this.count = count;
         this.price = price;
         this.disprice = disprice;
+        this.ischecked = true;
     }
 
     public Long getId() {
         return this.id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getImage() {
         return this.image;
     }
+
     public void setImage(String image) {
         this.image = image;
     }
+
     public String getGooddesc() {
         return this.gooddesc;
     }
+
     public void setGooddesc(String gooddesc) {
         this.gooddesc = gooddesc;
     }
+
     public String getContent() {
         return this.content;
     }
+
     public void setContent(String content) {
         this.content = content;
     }
+
     public int getCount() {
         return this.count;
     }
+
     public void setCount(int count) {
         this.count = count;
     }
+
     public double getPrice() {
         return this.price;
     }
+
     public void setPrice(double price) {
         this.price = price;
     }
+
     public double getDisprice() {
         return this.disprice;
     }
+
     public void setDisprice(double disprice) {
         this.disprice = disprice;
+    }
+
+    public boolean getIschecked() {
+        return this.ischecked;
     }
 }

@@ -12,11 +12,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -27,6 +32,7 @@ import com.androidapp.GoodsInfo;
 import com.androidapp.R;
 import com.androidapp.app.MyApplication;
 import com.androidapp.base.FlowRadioGroup;
+import com.androidapp.cn.sharesdk.onekeyshare.OnekeyShare;
 import com.androidapp.constant.Constants;
 import com.androidapp.nethelper.NetConfig;
 import com.androidapp.nethelper.NetUtils;
@@ -98,6 +104,12 @@ public class ProductDetailActivity extends AppCompatActivity {
     RelativeLayout cartPupmenu;
     @BindView(R.id.shop_cart)
     ImageView shopCart;
+
+    private Button qrbt;
+
+    private Button share;
+
+    private Button exit;
     //尾部局
     private LinearLayout shop_note_ll;
     private TextView item_detail_goodsDesc;
@@ -132,6 +144,8 @@ public class ProductDetailActivity extends AppCompatActivity {
     private View hPadding_top_for_listview;
 
 
+    private View popuview;
+
     private String url;
     public GoodsBean.DataBean.ItemsBean items;
     public List<GoodsBean.DataBean.ItemsBean.GoodsInfoBean> goods_info;
@@ -152,6 +166,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     public String attr_id = "";
     public GoodsBean.DataBean.ItemsBean.SkuInvBean skuInvBean;
     public boolean isliked = false;
+    public PopupWindow popupWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,6 +174,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_detail);
         dao = MyApplication.getApplication().getmDaoSession().getGoodsInfoDao();
         BarUtils.hideNotificationBar(this);
+        popuview = View.inflate(this, R.layout.popuview, null);
         ButterKnife.bind(this);
         initdata();
 
@@ -255,7 +271,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                         skv_attr_name.setButtonDrawable(null);
                         skv_attr_name.setOnClickListener(view -> ToastUtils.showShortSafe(skv_attr_name.getText().toString()));
                         // sku_attr.addView(skv_attr_name, layoutParams);
-                        sku_attr.addView(skv_attr_name,layoutParams);
+                        sku_attr.addView(skv_attr_name, layoutParams);
 
                     }
                     skuLl.addView(sku_attr);
@@ -342,6 +358,31 @@ public class ProductDetailActivity extends AppCompatActivity {
             }
 
         });
+        //分享
+        hShare_iv.setOnClickListener(view -> {
+            popupWindow = new PopupWindow(popuview, WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.MATCH_PARENT);
+            popupWindow.setOutsideTouchable(true);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                Transition explode = null;
+                explode = TransitionInflater.from(this).inflateTransition(android.R.transition.explode);
+                popupWindow.setEnterTransition(explode);
+            }
+            popupWindow.showAsDropDown(cartRl);
+            Toast.makeText(ProductDetailActivity.this, "pupwindows", Toast.LENGTH_SHORT).show();
+            qrbt = (Button) popuview.findViewById(R.id.qrbt);
+            qrbt.setOnClickListener(qrview -> {
+                Intent intentqr = new Intent(this, QRActicity.class);
+                intentqr.putExtra(Constants.REQUEST_QR, items.getGoods_image());
+                startActivity(intentqr);
+            });
+            share = popuview.findViewById(R.id.share);
+            share.setOnClickListener(view1 -> {
+                showShare();
+                popupWindow.dismiss();
+            });
+            exit = popuview.findViewById(R.id.exit);
+            exit.setOnClickListener(viewe -> popupWindow.dismiss());
+        });
         adapter.addHeaderView(v);
 
         //商品详情
@@ -374,7 +415,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         adapter.addFooterView(v);
     }
 
-    @OnClick({R.id.shop_cart, R.id.into_cart, R.id.buy_directly, R.id.left_back_iv, R.id.cart_rl, R.id.custom_service_fl, R.id.close, R.id.minus_iv, R.id.plus_iv, R.id.bottom_action_bar})
+    @OnClick({R.id.into_cart, R.id.buy_directly, R.id.left_back_iv, R.id.cart_rl, R.id.custom_service_fl, R.id.close, R.id.minus_iv, R.id.plus_iv, R.id.bottom_action_bar})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.shop_cart:
@@ -455,9 +496,28 @@ public class ProductDetailActivity extends AppCompatActivity {
 //                    Map.Entry<String, String> entry = attr.next();
 //                    LogUtils.e(entry.getKey() + ":" + entry.getValue());
 //                }
-
+                // 需要更新的数据
                 goodsInfo = new GoodsInfo(image, gooddesc, content, counts, price, disprice);
-                dao.insert(goodsInfo);
+                List<GoodsInfo> list = dao.queryBuilder()
+                        .where(GoodsInfoDao.Properties.Gooddesc.eq(gooddesc))
+                        .where(GoodsInfoDao.Properties.Image.eq(image))
+                        .list();
+                //大于0说明数据库中有该类型的数据
+                if (list.size() > 0) {
+                    LogUtils.e(list.size());
+
+                    // 根据需要更新数据的主键去数据库进行查询
+                    GoodsInfo load = dao.load(list.get(0).getId());
+                    if (load != null) {
+                        // 说明数据库中存在此条数据，则进行数据更新
+                        load.setCount((load.getCount() + goodsInfo.getCount()));
+                        dao.update(load);
+                        Toast.makeText(ProductDetailActivity.this, "商品已存在，只填加数量", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    dao.insert(goodsInfo);
+                    Toast.makeText(ProductDetailActivity.this, "添加成功", Toast.LENGTH_SHORT).show();
+                }
                 sellBarLl.setVisibility(View.VISIBLE);
                 cartPupmenu.setVisibility(View.GONE);
                 break;
@@ -519,5 +579,34 @@ public class ProductDetailActivity extends AppCompatActivity {
             container.removeView((View) object);
         }
 
+    }
+
+
+    private void showShare() {
+        OnekeyShare oks = new OnekeyShare();
+        //关闭sso授权
+        oks.disableSSOWhenAuthorize();
+
+        // 分享时Notification的图标和文字  2.5.9以后的版本不     调用此方法
+        //oks.setNotification(R.drawable.ic_launcher, getString(R.string.app_name));
+        // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间使用
+        oks.setTitle(getString(R.string.share));
+        // titleUrl是标题的网络链接，仅在人人网和QQ空间使用
+        oks.setTitleUrl(items.getGoods_url());
+        // text是分享文本，所有平台都需要这个字段
+        oks.setText(items.getGoods_name());
+        // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+        oks.setImagePath(items.getGoods_image());//确保SDcard下面存在此张图片
+        // url仅在微信（包括好友和朋友圈）中使用
+        oks.setUrl("http://sharesdk.cn");
+        // comment是我对这条分享的评论，仅在人人网和QQ空间使用
+        oks.setComment("我是测试评论文本");
+        // site是分享此内容的网站名称，仅在QQ空间使用
+        oks.setSite(getString(R.string.app_name));
+        // siteUrl是分享此内容的网站地址，仅在QQ空间使用
+        oks.setSiteUrl(items.getGoods_url());
+
+        // 启动分享GUI
+        oks.show(this);
     }
 }

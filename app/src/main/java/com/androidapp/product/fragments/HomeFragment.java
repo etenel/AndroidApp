@@ -33,6 +33,12 @@ public class HomeFragment extends BaseFragment {
     private List<HomeBean.DataBean.ItemsBean.ListBean> datas;
 
     @Override
+    public void initview() {
+        adapter = new HomeAdapter(datas);
+        recycle.setAdapter(adapter);
+    }
+
+    @Override
     public void initData() {
 
         NetUtils.getInstance().get(NetConfig.HOME_PAGER_URL, new NetUtils.OnHttpClientListener() {

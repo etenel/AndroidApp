@@ -167,7 +167,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:padding="15.0dip"
-                android:src="@drawable/ic_cart_unselected" />
+                android:src="@drawable/ic_cart_selected" />
 
             <TextView
                 android:id="@+id/add_check_select_display_tv"
