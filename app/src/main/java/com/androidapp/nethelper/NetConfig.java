@@ -186,4 +186,10 @@ public class NetConfig {
 //中间添加id
     public static  String BAISIDETAIL_URL="http://c.api.budejie.com/topic/comment_list/";
     public static String BAISIDETAILURL2="http://c.api.budejie.com/topic/comment_list/22860808/0/budejie-android-6.6.3/0-20.json";
+
+
+    //哔哩哔哩直播页面
+public static String BILIBILILIVE_URL="http://live.bilibili.com/AppNewIndex/common?_device=android&appkey=1d8b6e7d45233436&build=501000&mobi_app=android&platform=android&scale=hdpi&ts=1490013188000&sign=92541a11ed62841120e786e637b9db3b";
+
+
 }

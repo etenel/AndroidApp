@@ -106,7 +106,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     ImageView shopCart;
 
     private Button qrbt;
-
+    private Button share_I;
     private Button share;
 
     private Button exit;
@@ -360,7 +360,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         });
         //分享
         hShare_iv.setOnClickListener(view -> {
-            popupWindow = new PopupWindow(popuview, WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.MATCH_PARENT);
+            popupWindow = new PopupWindow(popuview, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
             popupWindow.setOutsideTouchable(true);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 Transition explode = null;
@@ -370,6 +370,7 @@ public class ProductDetailActivity extends AppCompatActivity {
             popupWindow.showAsDropDown(cartRl);
             Toast.makeText(ProductDetailActivity.this, "pupwindows", Toast.LENGTH_SHORT).show();
             qrbt = (Button) popuview.findViewById(R.id.qrbt);
+
             qrbt.setOnClickListener(qrview -> {
                 Intent intentqr = new Intent(this, QRActicity.class);
                 intentqr.putExtra(Constants.REQUEST_QR, items.getGoods_image());
@@ -378,6 +379,15 @@ public class ProductDetailActivity extends AppCompatActivity {
             share = popuview.findViewById(R.id.share);
             share.setOnClickListener(view1 -> {
                 showShare();
+                popupWindow.dismiss();
+            });
+            share_I = popuview.findViewById(R.id.sharebyi);
+            share_I.setOnClickListener(v1 -> {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_SUBJECT, "分享");
+                intent.putExtra(Intent.EXTRA_TEXT, "来自「哔哩哔哩」的分享:" + items.getGoods_name());
+                startActivity(Intent.createChooser(intent, items.getGoods_desc()));
                 popupWindow.dismiss();
             });
             exit = popuview.findViewById(R.id.exit);

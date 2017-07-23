@@ -16,6 +16,7 @@ import com.androidapp.R;
 import com.androidapp.mainactivity.presenter.IMainPresenter;
 import com.androidapp.mainactivity.presenter.MainPresenter;
 import com.androidapp.mainactivity.view.IMainActivity;
+import com.androidapp.util.BarUtils;
 import com.androidapp.util.LogUtils;
 
 import butterknife.BindView;
@@ -56,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
         fragmentManager = getSupportFragmentManager();
         mainPresenter = new MainPresenter(this, this);
         initListener();
+       // BarUtils.setStatusBarColor(this, getResources().getColor(R.color.colorAccent));
+        BarUtils.setTranslucentForCoordinatorLayout(this, 0);
         String action = getIntent().getAction();
         LogUtils.e(action);
         if(action!=null&&!TextUtils.isEmpty(action)) {
@@ -83,5 +86,12 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
     @Override
     public void showToast() {
 
+    }
+    /**
+     * 解决App重启后导致Fragment重叠的问题
+     */
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        //super.onSaveInstanceState(outState);
     }
 }

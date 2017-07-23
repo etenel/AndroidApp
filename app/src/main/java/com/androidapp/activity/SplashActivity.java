@@ -10,6 +10,7 @@ import com.androidapp.R;
 import com.androidapp.UserInfo;
 import com.androidapp.app.MyApplication;
 import com.androidapp.mainactivity.MainActivity;
+import com.androidapp.util.BarUtils;
 import com.bumptech.glide.Glide;
 import com.greendao.gen.UserInfoDao;
 import com.hyphenate.chat.EMClient;
@@ -27,9 +28,11 @@ public class SplashActivity extends AppCompatActivity {
     private ImageView image;
     private Disposable disposable;
     private UserInfoDao dao;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        BarUtils.setTranslucentForCoordinatorLayout(this, 0);
         setContentView(R.layout.activity_splash);
         image = (ImageView) findViewById(R.id.image);
         dao = MyApplication.getApplication().getmDaoSession().getUserInfoDao();
@@ -41,6 +44,7 @@ public class SplashActivity extends AppCompatActivity {
         Glide.with(this).load(R.drawable.loading_start).asGif().into(image);
         startLogin();
     }
+
     private void startLogin() {
 
         Observable.timer(4700, TimeUnit.MILLISECONDS)
@@ -62,10 +66,10 @@ public class SplashActivity extends AppCompatActivity {
 
                     @Override
                     public void onNext(@NonNull Boolean aBoolean) {
-                        Log.e("TAG",aBoolean+"");
+                        Log.e("TAG", aBoolean + "");
                         if (aBoolean == true) {
-                            String currentUser= EMClient.getInstance().getCurrentUser();
-                        dao.insert(new UserInfo(currentUser,currentUser));
+                            String currentUser = EMClient.getInstance().getCurrentUser();
+                            dao.insert(new UserInfo(currentUser, currentUser));
                             startActivity(new Intent(SplashActivity.this, MainActivity.class));
                         } else {
                             startActivity(new Intent(SplashActivity.this, LoginActivity.class));

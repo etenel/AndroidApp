@@ -16,6 +16,11 @@
         android:layout_height="wrap_content"
         android:text="点击分享" />
     <Button
+        android:id="@+id/sharebyi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="点击分享" />
+    <Button
         android:id="@+id/exit"
         android:text="取消"
         android:layout_width="match_parent"

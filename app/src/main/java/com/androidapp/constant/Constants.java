@@ -30,9 +30,17 @@ public class Constants {
             NetConfig.TOPTS_URL, NetConfig.MTRIP_URL, NetConfig.WITHEATING_URL
     };
     public static final String MAGAUTHORNAME = "authorname";
+    public static final String SWITCH_MODE_KEY = "mode_key";
+    public static final String EXTRA_CID = "cid";
+    public static final String EXTRA_TITLE = "title";
+    public static final String EXTRA_ONLINE = "online";
+    public static final String EXTRA_FACE = "face";
+    public static final String EXTRA_NAME = "name";
+    public static final String EXTRA_MID = "mid";
+    public static final String EXTRA_PLAYURL = "playurl";
     public static String MAGINIZEdetail = "MAGIN";
-    public static int[] BSRECOMMEND_TYPE = new int[]{0, 1, 2, 3,4};
+    public static int[] BSRECOMMEND_TYPE = new int[]{0, 1, 2, 3, 4};
 
 
-    public static String REQUEST_QR="request_qr";
+    public static String REQUEST_QR = "request_qr";
 }

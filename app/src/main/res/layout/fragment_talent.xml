@@ -5,6 +5,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="@android:color/background_dark" />
+
     <include layout="@layout/talentbar"></include>
 
     <RelativeLayout

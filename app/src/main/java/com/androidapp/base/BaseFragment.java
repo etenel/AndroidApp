@@ -52,4 +52,5 @@ public abstract class BaseFragment extends Fragment {
         super.onDestroy();
         bind.unbind();
     }
+
 }

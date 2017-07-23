@@ -42,7 +42,7 @@ public class ShareFragment extends BaseFragment {
 
     @Override
     public void initData() {
-        BarUtils.setStatusBarColor(getActivity(), getResources().getColor(R.color.colorAccent));
+       // BarUtils.setStatusBarColor(getActivity(), getResources().getColor(R.color.colorAccent));
         BarUtils.setTranslucentForCoordinatorLayout(getActivity(), 0);
         frameLayouts = new ArrayList<>();
         frameLayouts.add(new BSRecommendFragment());
