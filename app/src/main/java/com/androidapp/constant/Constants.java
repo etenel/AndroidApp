@@ -38,6 +38,7 @@ public class Constants {
     public static final String EXTRA_NAME = "name";
     public static final String EXTRA_MID = "mid";
     public static final String EXTRA_PLAYURL = "playurl";
+    public static final String AID = "aid";
     public static String MAGINIZEdetail = "MAGIN";
     public static int[] BSRECOMMEND_TYPE = new int[]{0, 1, 2, 3, 4};
 

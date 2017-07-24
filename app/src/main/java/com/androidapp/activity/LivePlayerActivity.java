@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.androidapp.R;
 import com.androidapp.constant.Constants;
+import com.androidapp.persion.view.BiliDanmukuCompressionTools;
 import com.androidapp.persion.view.CircleImageView;
 import com.androidapp.persion.view.DanmakuParser;
 import com.androidapp.persion.view.LoveLikeLayout;
@@ -27,12 +28,13 @@ import com.androidapp.util.ScreenUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import java.io.BufferedInputStream;
+import org.jsoup.Jsoup;
+import org.jsoup.helper.HttpConnection;
+
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,8 +51,6 @@ import master.flame.danmaku.danmaku.parser.BaseDanmakuParser;
 import master.flame.danmaku.danmaku.parser.IDataSource;
 import master.flame.danmaku.ui.widget.DanmakuView;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
-
-import static com.androidapp.util.DownloadxmlUtils.getSoapRequest;
 
 public class LivePlayerActivity extends AppCompatActivity {
 
@@ -335,15 +335,13 @@ public class LivePlayerActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    getSoapRequest();
-                    URL url = null;
-                    url = new URL("http://comment.bilibili.tv/20458.xml");
-                    URLConnection conexion = url.openConnection();
-                    conexion.setRequestProperty("Content-Type", "xml;charset=utf-8");
-                    conexion.connect();
-                    //InputStream is = conexion.getInputStream();
-                    BufferedInputStream is = new BufferedInputStream(url.openStream());
-                    danmaku.prepare(createParser("http://comment.bilibili.tv/20458.xml"), DanmakuContext.create());
+                    String url = "http://comment.bilibili.tv/20458.xml";
+                    HttpConnection.Response rsp = (HttpConnection.Response)
+                            Jsoup.connect(url).timeout(20000).execute();
+                    InputStream stream = new ByteArrayInputStream(BiliDanmukuCompressionTools.
+                            decompressXML(rsp.bodyAsBytes()));
+
+                    danmaku.prepare(createParser(stream), DanmakuContext.create());
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -439,31 +437,32 @@ public class LivePlayerActivity extends AppCompatActivity {
         return parser;
 
     }
-    private BaseDanmakuParser createParser(String url) {
 
-        if (url == null) {
-            return new BaseDanmakuParser() {
-
-                @Override
-                protected Danmakus parse() {
-                    return new Danmakus();
-                }
-            };
-        }
-
-        ILoader loader = DanmakuLoaderFactory.create(DanmakuLoaderFactory.TAG_BILI);
-
-        try {
-            loader.load(url);
-        } catch (IllegalDataException e) {
-            e.printStackTrace();
-        }
-        BaseDanmakuParser parser = new DanmakuParser();
-        IDataSource<?> dataSource = loader.getDataSource();
-        parser.load(dataSource);
-        return parser;
-
-    }
+//    private BaseDanmakuParser createParser(String url) {
+//
+//        if (url == null) {
+//            return new BaseDanmakuParser() {
+//
+//                @Override
+//                protected Danmakus parse() {
+//                    return new Danmakus();
+//                }
+//            };
+//        }
+//
+//        ILoader loader = DanmakuLoaderFactory.create(DanmakuLoaderFactory.TAG_BILI);
+//
+//        try {
+//            loader.load(url);
+//        } catch (IllegalDataException e) {
+//            e.printStackTrace();
+//        }
+//        BaseDanmakuParser parser = new DanmakuParser();
+//        IDataSource<?> dataSource = loader.getDataSource();
+//        parser.load(dataSource);
+//        return parser;
+//
+//    }
 
     @Override
     protected void onDestroy() {

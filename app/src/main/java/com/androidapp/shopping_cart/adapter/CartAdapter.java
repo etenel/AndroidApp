@@ -40,6 +40,7 @@ public class CartAdapter extends BaseQuickAdapter<GoodsInfo, BaseViewHolder> {
             }
         }
         helper.setText(R.id.good_amount_tv, "X" + item.getCount());
+        helper.setText(R.id.tv_count,item.getCount());
         // 判断 记住的状态
         if (item.ischecked()) {
             helper.setChecked(R.id.cb_gov, true);

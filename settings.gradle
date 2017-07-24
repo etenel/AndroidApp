@@ -1,1 +1,1 @@
-include ':app', ':easeui', ':ijkplayer-arm64', ':ijkplayer-java', ':ijkplayer-armv7a'
+include ':app', ':easeui', ':RxBLE-master', ':bluetooth-scan'

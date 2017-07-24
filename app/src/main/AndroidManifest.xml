@@ -7,6 +7,14 @@
     <uses-sdk
         android:minSdkVersion="17"
         android:targetSdkVersion="26" />
+    <!-- 使用蓝牙所需要的权限 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <!-- 使用扫描和设置蓝牙的权限（申明这一个权限必须申明上面一个权限） -->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <!-- Needed only if your app targets Android 5.0 (API level 21) or higher. -->
+    <uses-feature android:name="android.hardware.location.gps" />
+    <!-- 6.0以上 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <permission
         android:name="com.androidapp.permission.JPUSH_MESSAGE"
@@ -280,7 +288,13 @@
 
         <activity
             android:name=".activity.LivePlayerActivity"
-            android:configChanges="screenSize|orientation|keyboardHidden"></activity>
+            android:configChanges="screenSize|orientation|keyboardHidden" />
+        <activity
+            android:name=".activity.BleActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_ble"
+            android:theme="@style/FullscreenTheme" />
+        <activity android:name=".persion.activity.ChaseActivity"></activity>
     </application>
 
 </manifest>

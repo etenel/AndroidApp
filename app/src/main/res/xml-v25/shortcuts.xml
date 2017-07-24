@@ -31,23 +31,23 @@
             android:targetPackage="com.androidapp" />
         <categories android:name="android.shortcut.conversation" />
     </shortcut>
-    <shortcut
-        android:enabled="true"
-        android:icon="@drawable/rt"
-        android:shortcutDisabledMessage="@string/persion"
-        android:shortcutId="shopcart"
-        android:shortcutLongLabel="@string/shop_cart"
-        android:shortcutShortLabel="@string/shop_cart">
-        <intent
-            android:action="com.androidapp.main.shop"
-            android:targetClass="com.androidapp.mainactivity.MainActivity"
-            android:targetPackage="com.androidapp"></intent>
-        <intent
-            android:action="com.androidapp.shopcart"
-            android:targetClass="com.androidapp.activity.ShopCartActivity"
-            android:targetPackage="com.androidapp"></intent>
-        <categories android:name="android.shortcut.conversation" />
-    </shortcut>
+    <!--<shortcut-->
+        <!--android:enabled="true"-->
+        <!--android:icon="@drawable/rt"-->
+        <!--android:shortcutDisabledMessage="@string/persion"-->
+        <!--android:shortcutId="shopcart"-->
+        <!--android:shortcutLongLabel="@string/shop_cart"-->
+        <!--android:shortcutShortLabel="@string/shop_cart">-->
+        <!--<intent-->
+            <!--android:action="com.androidapp.main.shop"-->
+            <!--android:targetClass="com.androidapp.mainactivity.MainActivity"-->
+            <!--android:targetPackage="com.androidapp"></intent>-->
+        <!--<intent-->
+            <!--android:action="com.androidapp.shopcart"-->
+            <!--android:targetClass="com.androidapp.activity.ShopCartActivity"-->
+            <!--android:targetPackage="com.androidapp"></intent>-->
+        <!--<categories android:name="android.shortcut.conversation" />-->
+    <!--</shortcut>-->
     <shortcut
         android:enabled="true"
         android:icon="@drawable/ic_follows_sinafriends_checked"
@@ -58,6 +58,19 @@
         <intent
             android:action="com.androidapp.weibo"
             android:targetClass="com.androidapp.activity.JumptoWeiBo"
+            android:targetPackage="com.androidapp"></intent>
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/app_tencent_weixin"
+        android:shortcutDisabledMessage="@string/persion"
+        android:shortcutId="Ble"
+        android:shortcutLongLabel="@string/Ble"
+        android:shortcutShortLabel="@string/Ble">
+        <intent
+            android:action="com.androidapp.activity.BleActivity"
+            android:targetClass="com.androidapp.activity.BleActivity"
             android:targetPackage="com.androidapp"></intent>
         <categories android:name="android.shortcut.conversation" />
     </shortcut>
